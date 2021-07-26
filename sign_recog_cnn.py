@@ -1,8 +1,5 @@
-import time
-import os
 import torch
 from torch import nn
-import numpy as np
 
 class module_3_5(nn.Module):
 	def __init__(self, input_dim, output_dim):
