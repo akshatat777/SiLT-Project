@@ -1,0 +1,20 @@
+import speech_recognition as sr
+# utilizing this speech recognition module
+
+def load_mic(timeout=5):
+    """ 
+    Parameters
+    timeout: int
+        specifies the time that the audio will try to detect a phrase before it sends
+        out an error message ("speech_recognition.WaitTimeoutError")
+    """
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Say something! Recording audio...")
+        audio = r.listen(source, timeout = timeout)
+        return r.recognize_google(audio)
+        # ^ uses the Google Speech Recognition API to process and translate the audio
+        # will provide more notes on this later
+
+print("We think you said: " + load_mic())
+    
