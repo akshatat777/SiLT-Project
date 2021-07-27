@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-# import time
+
 
 cap = cv2.VideoCapture(0)
 
@@ -12,12 +12,8 @@ hands = mpHands.Hands(static_image_mode=False,
                       min_tracking_confidence=0.45)
 mpDraw = mp.solutions.drawing_utils
 
-# pTime = 0
-# cTime = 0
 margin = 40
 
-
-# to increase accuracy, you could pass in landmarks or maybe even wether its a right or left hand
 
 while True:
     success, img = cap.read()
