@@ -29,7 +29,8 @@ class SignRecogCNN(nn.Module):
 	def __init__(self):
 		super(SignRecogCNN, self).__init__()
 		# size: 28
-		self.module1 = module_3_5(3,128)
+		self.conv1 = nn.Conv2d(1,128,(3,3),padding='same')
+		self.module1 = module_3_5(128,128)
 		self.module2 = module_3_5(128,128)
 		self.pool1 = nn.MaxPool2d((3,3),2)
 		# MaxPool2d "slides the windows"
@@ -43,11 +44,12 @@ class SignRecogCNN(nn.Module):
 		# global average pooling
 		self.dense1 = nn.Linear(128, 512)
 		self.batch_norm1 = nn.BatchNorm1d(512)
-		self.dense2 = nn.Linear(512, 24)
+		self.dense2 = nn.Linear(512, 26)
 		self.relu = nn.ReLU()
 
 	def forward(self, x):
 		# forward pass
+		x = self.relu(self.conv1(x))
 		x1 = self.module1(x)
 		x2 = self.module2(x1)
 		x = self.pool1(x1+x2)
