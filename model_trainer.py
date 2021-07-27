@@ -56,7 +56,7 @@ def eval(model, test_x, test_y, epoch):
         torch.save(model.state_dict(), 'sign_recogn_cnn')
 
 model = SignRecogCNN().to('cpu')
-epochs = 5
+epochs = 2
 batch_size = 64
 optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)
 train(model, optimizer, batch_size, epochs)

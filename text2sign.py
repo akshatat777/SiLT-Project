@@ -4,24 +4,27 @@ from bs4 import BeautifulSoup
 import io
 from moviepy.editor import VideoFileClip, concatenate_videoclips
 
-def word_query(word: str):
+def word_query(word):
     # word = word.replace(" ", "%2B")
     page = requests.get("https://signingsavvy.com/search/" + word)
     soup = BeautifulSoup(page.text, "lxml")
     with open("soup.txt", "w") as f:
         f.write(soup.prettify())
     video_html = soup.find("div", class_="videocontent")
-    link = video.find("link").get("href")
+    link = video_html.find("link").get("href")
     video = requests.get("https://signingsavvy.com/search/" + link)
-    with open(word + ".mp4", "w") as f:
-        f.write(video.content)
+    with open(word + ".mp4", "wb") as f:
+        f.write(video)
 
 def words_to_video(words):
+    mp4_list = []
     for word in words:
         query = word_query(word)
         mp4_list.append(VideoFileClip(query))
     video = concatenate_videoclips(mp4_list)
     return video
+
+words_to_video(["Hello"])
         
 
 # import torch

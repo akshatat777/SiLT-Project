@@ -2,9 +2,9 @@ import numpy as np
 import pandas as pd
 
 def read_data(dir_path : str = 'data'):
-    train_data = pd.read_csv(dir_path+'/sign_mnist_train.csv').to_numpy()
-    test_data = pd.read_csv(dir_path+"/sign_mnist_test.csv").to_numpy()
-
+    all_data = np.load('data/images.npy')
+    all_labels = np.load('data/labels.npy')
+    
     train_label = train_data[:,0]
     test_label = test_data[:,0]
     train_data = train_data[:,1:]
