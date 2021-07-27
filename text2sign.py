@@ -6,15 +6,19 @@ from moviepy.editor import VideoFileClip, concatenate_videoclips
 
 def word_query(word):
     # word = word.replace(" ", "%2B")
-    page = requests.get("https://signingsavvy.com/search/" + word)
+    page = requests.get("https://www.signasl.org/sign/" + word)
     soup = BeautifulSoup(page.text, "lxml")
     with open("soup.txt", "w") as f:
         f.write(soup.prettify())
-    video_html = soup.find("div", class_="videocontent")
-    link = video_html.find("link").get("href")
-    video = requests.get("https://signingsavvy.com/search/" + link)
+    video_link = soup.find("video", class_="video-js").find("source").get("src")
+    print(video_link)
+    video = requests.get(video_link, stream=True)
     with open(word + ".mp4", "wb") as f:
-        f.write(video)
+        for chunk in video.iter_content(chunk_size=1024):
+            # writing one chunk at a time to pdf file
+            if chunk:
+                f.write(chunk)
+    return word + ".mp4"
 
 def words_to_video(words):
     mp4_list = []
@@ -24,7 +28,7 @@ def words_to_video(words):
     video = concatenate_videoclips(mp4_list)
     return video
 
-words_to_video(["Hello"])
+words_to_video(["Thank you"])
         
 
 # import torch
