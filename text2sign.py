@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import io
 from moviepy.editor import VideoFileClip, concatenate_videoclips
+from pytube import YouTube
 
 def word_query(word):
     # word = word.replace(" ", "%2B")
@@ -10,25 +11,44 @@ def word_query(word):
     soup = BeautifulSoup(page.text, "lxml")
     with open("soup.txt", "w") as f:
         f.write(soup.prettify())
-    video_link = soup.find("video", class_="video-js").find("source").get("src")
-    print(video_link)
-    video = requests.get(video_link, stream=True)
-    with open(word + ".mp4", "wb") as f:
-        for chunk in video.iter_content(chunk_size=1024):
-            # writing one chunk at a time to pdf file
-            if chunk:
-                f.write(chunk)
-    return word + ".mp4"
+    try:
+        video_link = soup.find("video", class_="video-js").find("source").get("src")
+        print(video_link)
+        video = requests.get(video_link, stream=True)
+        with open(word + ".mp4", "wb") as f:
+            for chunk in video.iter_content(chunk_size=1024):
+                if chunk:
+                    f.write(chunk)
+        print("Found " + word)
+        return word + ".mp4"
+    except:
+        try:
+            content = soup.find("meta", property="og:video").get("content")
+            video_link = "https://youtube.com/watch?v=" + content[content.index("embed") + 6:]
+            print(video_link)
+            yt = YouTube(video_link)
+            print(yt.__dict__)
+            video = yt.streams
+            print(video)
+            # video.download(filename=word + ".mp4")
+            return word + ".mp4"
+        except Exception as e:
+            print(e)
+            return "Word Not Found"
 
 def words_to_video(words):
     mp4_list = []
-    for word in words:
+    for word in words.split():
         query = word_query(word)
-        mp4_list.append(VideoFileClip(query))
+        if not query == "Word Not Found":
+            print("Appended " + query)
+            mp4_list.append(VideoFileClip(query))
+        else:
+            print(query + " " + word)
     video = concatenate_videoclips(mp4_list)
-    return video
+    video.write_videofile(words + ".mp4")
 
-words_to_video(["Thank you"])
+words_to_video("everyone")
         
 
 # import torch

@@ -1,20 +1,468 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
  <head>
   <title>
-   404 Not Found
+   American Sign Language ASL Video Dictionary - everyone
   </title>
+  <meta content="en-GB" http-equiv="content-language"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="/apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57"/>
+  <link href="/apple-touch-icon-60x60.png" rel="apple-touch-icon" sizes="60x60"/>
+  <link href="/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72"/>
+  <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76"/>
+  <link href="/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114"/>
+  <link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120"/>
+  <link href="/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144"/>
+  <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152"/>
+  <link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="/android-chrome-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+  <link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png"/>
+  <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="/manifest-asl.json" rel="manifest"/>
+  <meta content="#2d89ef" name="msapplication-TileColor"/>
+  <meta content="/mstile-144x144.png" name="msapplication-TileImage"/>
+  <meta content="#ffffff" name="theme-color"/>
+  <!-- Bootstrap core CSS -->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Custom styles for this template -->
+  <link href="/styles.css" rel="stylesheet"/>
+  <script>
+   function CleanUserSearchInput(element) {
+        element.value = element.value.replace('.','');
+        element.value = element.value.replace(',','');
+        element.value = element.value.replace('(','');
+        element.value = element.value.replace(')','');
+        element.value = element.value.replace('?','');
+        element.value = element.value.replace(',','');
+        element.value = element.value.replace('/','');
+        element.value = element.value.replace('\\','');
+        element.value = element.value.replace('_',' ');
+
+        element.value = element.value.replace('  ',''); // remove double spaces
+    }
+  </script>
+  <meta content="article" property="og:type"/>
+  <meta content="Watch how to sign 'everyone' in American Sign Language." name="description"/>
+  <meta content="Watch how to sign 'everyone' in American Sign Language." property="og:description"/>
+  <meta content="Watch how to sign 'everyone' in American Sign Language." itemprop="description"/>
+  <meta content="player" name="twitter:card"/>
+  <meta content="Watch how to sign 'everyone' in American Sign Language." name="twitter:title"/>
+  <meta content="Watch how to sign 'everyone' in American Sign Language." name="twitter:description"/>
+  <meta content="https://www.youtube.com/embed/KGE1Z9SVmKE" name="twitter:player"/>
+  <meta content="https://www.youtube.com/embed/KGE1Z9SVmKE" property="og:video"/>
+  <meta content="640" name="twitter:player:width"/>
+  <meta content="360" name="twitter:player:height"/>
+  <meta content="https://img.youtube.com/vi/KGE1Z9SVmKE/hqdefault.jpg" name="twitter:image"/>
+  <meta content="640" name="twitter:image:width"/>
+  <meta content="360" name="twitter:image:height"/>
+  <meta content="@LearnASL" name="twitter:site"/>
+  <meta content="https://img.youtube.com/vi/KGE1Z9SVmKE/hqdefault.jpg" property="og:image"/>
+  <meta content="360" property="og:image:height"/>
+  <meta content="640" property="og:image:width"/>
+  <meta content="360" property="og:video:height"/>
+  <meta content="640" property="og:video:width"/>
+  <meta content="video/mp4" property="og:video:type"/>
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
+  <link href="//vjs.zencdn.net/4.2.2/video-js.css" rel="stylesheet"/>
+  <script src="//vjs.zencdn.net/4.2.2/video.js">
+  </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.3/js.cookie.js" type="text/javascript">
+  </script>
+  <style>
+   /*.vjs-default-skin .vjs-big-play-button {
+left: 40%;
+top: 40%;
+width: 25%;
+height: 25%;}*/
+
+.vjs-default-skin .vjs-big-play-button {
+	width:4em;
+	height:2.8em;
+	left: 50%;
+	top: 50%;
+	margin-top:-42px;
+	margin-right:0px;
+	margin-bottom:0px;
+	margin-left:-62px;
+	text-align:center;
+		
+}
+
+.disabledvideo {
+	background: repeating-linear-gradient(
+	  45deg,
+	  #FFFFFF,
+	  #FFFFFF 5px,
+	  #c4c4c4 5px,
+	  #c4c4c4 10px
+	);
+}
+
+		@media screen and (min-width: 768px) {
+			.modal-custom-width{
+				width:500px;
+			}
+		}
+  </style>
+  <script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({
+				google_ad_client: "ca-pub-0826065450533327",
+				enable_page_level_ads: true
+			});
+  </script>
  </head>
  <body>
-  <h1>
-   Not Found
-  </h1>
-  <p>
-   The requested URL was not found on this server.
-  </p>
-  <hr/>
-  <address>
-   Apache/2.4.29 (Ubuntu) Server at www.signasl.org Port 80
-  </address>
+  <div class="alert alert-dismissible" id="countryredirectalert" style="display:none; top:0px; margin-bottom:0px; text-align:center; background-color: lightyellow;">
+  </div>
+  <div class="navbar navbar-default">
+   <!-- navbar-fixed-top -->
+   <div class="container">
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+     </button>
+     <a class="navbar-brand" href="/" style="padding-top:9px; padding-bottom:9px; padding-right:9px;">
+      <img alt="Sign BSL" height="30" src="/logo.svg" width="30"/>
+     </a>
+     <a class="navbar-brand" href="/">
+      SignASL.org
+     </a>
+    </div>
+    <div class="navbar-collapse collapse">
+     <ul class="nav navbar-nav">
+      <li class="active">
+       <a href="/">
+        Home
+       </a>
+      </li>
+      <li>
+       <a href="/about">
+        About
+       </a>
+      </li>
+      <li>
+       <a href="/contact">
+        Contact
+       </a>
+      </li>
+     </ul>
+     <ul class="nav navbar-nav navbar-right">
+     </ul>
+    </div>
+    <!--/.navbar-collapse -->
+   </div>
+  </div>
+  <div class="container">
+   <div class="boldheading">
+    ASL Sign Language Dictionary
+   </div>
+   <div class="row">
+    <div class="col-md-8 col-xs-12">
+     <p>
+      Search and compare thousands of words and phrases in American Sign Language (ASL). The largest collection online.
+     </p>
+     <form action="/word.php" class="" method="get">
+      <div class="row">
+       <div class="col-md-10 col-xs-8">
+        <div class="form-group">
+         <input autocomplete="off" class="form-control typeahead" id="word" name="word" placeholder="Search word or phrase" type="text" value="everyone"/>
+        </div>
+       </div>
+       <div class="col-md-2 col-xs-4">
+        <div class="form-group">
+         <button class="btn btn-signbsl" onclick="CleanUserSearchInput(document.getElementById('word')); return true;" type="submit">
+          Search
+         </button>
+        </div>
+       </div>
+      </div>
+     </form>
+    </div>
+    <div class="col-md-4">
+     <div class="well well-sm">
+      <div class="media">
+       <a class="pull-left" href="https://play.google.com/store/apps/details?id=com.signasl.signasl">
+        <img alt="Android app on Google Play" height="46" src="/img/get_it_on_google_play.svg" width="135"/>
+       </a>
+       <div class="media-body">
+        <span class="label label-primary">
+         NEW
+        </span>
+        View all these signs in the Sign ASL Android App.
+        <a href="https://play.google.com/store/apps/details?id=com.signasl.signasl">
+         Download for free
+        </a>
+        .
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="container">
+   <!-- SignBslUnderSearchBox -->
+   <ins class="adsbygoogle" data-ad-client="ca-pub-0826065450533327" data-ad-slot="8409841606" style="display:inline-block;width:728px;height:90px">
+   </ins>
+   <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+  </div>
+  <div class="container">
+   <!-- Example row of columns -->
+   <div class="row featurette">
+    <div class="col-md-12">
+     <h1>
+      everyone
+     </h1>
+     <p>
+     </p>
+     <div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" style="float:left; width:330px; height:330px;">
+      <meta content="https://img.youtube.com/vi/KGE1Z9SVmKE/hqdefault.jpg" itemprop="thumbnailUrl"/>
+      <meta content="T4S" itemprop="duration"/>
+      <meta content="https://www.youtube.com/watch?v=KGE1Z9SVmKE" itemprop="URL"/>
+      <meta content="https://www.youtube.com/watch?v=KGE1Z9SVmKE" itemprop="embedURL"/>
+      <span itemprop="name" style="display:none;">
+       everyone in ASL
+      </span>
+      <span itemprop="description" style="display:none;">
+       Watch how to sign everyone in American Sign Language
+      </span>
+      <meta content="360" itemprop="height"/>
+      <meta content="640" itemprop="width"/>
+      <iframe allowfullscreen="" frameborder="0" height="180" src="//www.youtube-nocookie.com/embed/KGE1Z9SVmKE?rel=0&amp;modestbranding=1&amp;loop=1&amp;playlist=KGE1Z9SVmKE&amp;theme=light&amp;controls=0&amp;iv_load_policy=3&amp;mute=1&amp;origin=https://www.signasl.org" volume="0" width="320">
+      </iframe>
+      <br/>
+      <div style="float:left">
+       <i>
+        everyone
+       </i>
+       <span style="color:#666; font-size:80%;">
+        - SMARTSign Dictionary
+       </span>
+       <br/>
+       <a data-toggle="modal" data-videoref="tn15vmctod" href="#modalEmbedCode" title="Embed this video">
+        <span style="color:#666; font-size:80%; padding-bottom:10px;">
+         <span class="glyphicon glyphicon-link">
+         </span>
+         Embed this video
+        </span>
+       </a>
+      </div>
+     </div>
+     <div style="clear:both">
+      <!-- -->
+     </div>
+     <p>
+      <!-- -->
+     </p>
+    </div>
+   </div>
+  </div>
+  <div class="jumbotron" style="margin-top:40px;">
+   <div class="container">
+    <div class="row">
+     <div class="col-md-6">
+      <h3>
+       Sign not right? Or know a different sign?
+      </h3>
+      <p>
+       Upload your sign now.
+      </p>
+      <a class="btn btn-success btn-lg" href="/upload/everyone" rel="nofollow" role="button">
+       <span class="glyphicon glyphicon-upload">
+       </span>
+       Upload
+      </a>
+     </div>
+    </div>
+    <div style="clear:both;">
+     <!-- -->
+    </div>
+   </div>
+  </div>
+  <div class="container">
+   <div id="share-buttons">
+    Share »
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/sharer.php?u=https://www.signasl.org/sign/everyone" rel="nofollow" target="_blank" title="Facebook">
+     <img alt="Facebook" src="/img/socialmedia/facebook.png"/>
+    </a>
+    <!-- Twitter -->
+    <a href="https://twitter.com/share?url=https://www.signasl.org/sign/everyone&amp;text=Watch how to sign 'everyone' in American Sign Language&amp;hashtags=asl,signasl" rel="nofollow" target="_blank" title="Twitter">
+     <img alt="Twitter" src="/img/socialmedia/twitter.png"/>
+    </a>
+    <!-- Pinterest -->
+    <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','https://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" rel="nofollow" title="Pininterest">
+     <img alt="Pinterest" src="/img/socialmedia/pinterest.png"/>
+    </a>
+    <!-- Email -->
+    <a href="/cdn-cgi/l/email-protection#e7d8b492858d828493daaf8890c79388c794869ec7829182959e888982c78e89c7a68a82958e848689c7b48e8089c7ab86898092868082c1a588839edaaec2d5d7948690c2d5d7938f8e94c2d5d7868983c2d5d7938f8892808f93c2d5d78881c2d5d79e8892c6c2d5d7c78f93939794ddc8c8909090c9948e808986948bc9889580c8948e8089c8829182959e888982" rel="nofollow" title="Email">
+     <img alt="Email" src="/img/socialmedia/email.png"/>
+    </a>
+   </div>
+  </div>
+  <!-- /container -->
+  <footer>
+   <p>
+    ASL Sign Dictionary © 2013 - 2021 - Website by
+    <a href="https://www.daniel-mitchell.com" target="_blank">
+     Daniel Mitchell
+    </a>
+    |
+    <a href="/privacy-policy">
+     Privacy Policy
+    </a>
+    <br/>
+    Google Play and the Google Play logo are trademarks of Google LLC.
+   </p>
+  </footer>
+  <!-- Bootstrap core JavaScript
+================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+  </script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+  </script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.3.1/typeahead.bundle.min.js">
+  </script>
+  <script>
+   var searchwords = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: '/wordsearch.php',
+  remote: {
+    url: '/wordsearch.php?query=%QUERY',
+    wildcard: '%QUERY'
+  }
+});
+
+$('.typeahead').typeahead({ highlight: true }, {
+	name: 'searchwords',
+	limit: 10,
+	source: searchwords
+})
+.on('typeahead:selected', function(e){
+	CleanUserSearchInput(document.getElementById('word'));
+	e.target.form.submit();
+});
+  </script>
+  <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+  <script type="text/javascript">
+   window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"//www.signasl.org/privacy-policy","theme":"dark-bottom"};
+  </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js" type="text/javascript">
+  </script>
+  <!-- End Cookie Consent plugin -->
+  <script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	  ga('create', 'UA-55949713-1', 'auto');	  
+	  ga('require', 'displayfeatures');
+	  ga('send', 'pageview');
+  </script>
+  <script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <script>
+   $('video').hover(function(event) {
+				var target = $(event.target).parent();
+				if(event.type === "mouseenter") {
+					target.addClass('vjs-user-active');
+					target.removeClass('vjs-user-inactive');
+				} else if(event.type === "mouseleave") {
+					target.removeClass('vjs-user-active');
+					target.addClass('vjs-user-inactive');
+				}
+			})
+  </script>
+  <div aria-labelledby="myModalLabel" class="modal fade" id="modalEmbedCode" role="dialog" tabindex="-1">
+   <div class="modal-dialog modal-custom-width" role="document">
+    <div class="modal-content">
+     <div class="modal-header">
+      <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+       <span aria-hidden="true">
+        ×
+       </span>
+      </button>
+      <h4 class="modal-title" id="myModalLabel">
+       <span class="glyphicon glyphicon-link">
+       </span>
+       Embed this video
+      </h4>
+     </div>
+     <div class="modal-body">
+      <p>
+       Add this video to your website by copying the code below.
+      </p>
+      <div class="input-group">
+       <input class="form-control" id="embedCodeTextBox" onfocus="this.setSelectionRange(0, this.value.length + 1);" style="font-size:80%;" type="text" value=""/>
+       <span class="input-group-btn">
+        <button class="btn btn-default" data-placement="bottom" data-toggle="tooltip" id="copyembedbutton" title="Copy to Clipboard" type="button">
+         Copy
+        </button>
+       </span>
+      </div>
+      <hr/>
+      <h4>
+       Preview
+      </h4>
+      <div id="embedCodeExample">
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   $('#modalEmbedCode').on('show.bs.modal', function(e) {
+				var embedHtml = '<blockquote class="signasldata-embed" data-vidref="' + $(e.relatedTarget).data('videoref') + '"><a href="https://www.signasl.org/sign/everyone">Watch how to sign \'everyone\' in American Sign Language</a></blockquote>';
+				var embedHtmlScript = '<script async src="https://embed.signasl.org/widgets.js" charset="utf-8"><' + '/script>';
+				$("#embedCodeTextBox").val(embedHtml + embedHtmlScript);
+
+				$("#embedCodeExample").html(embedHtml);
+				var newScript = document.createElement("script");
+				newScript.src = "https://embed.signasl.org/widgets.js";
+				newScript.async = true;
+				document.getElementById('embedCodeExample').appendChild(newScript);
+			});
+			$(document).ready(function() {
+				var copyembedbutton = $('#copyembedbutton');
+				copyembedbutton.tooltip();
+				copyembedbutton.bind('click', function() {
+					var input = document.querySelector('#embedCodeTextBox');
+					input.setSelectionRange(0, input.value.length + 1);
+					try {
+						var success = document.execCommand('copy');
+						if (success) {
+							copyembedbutton.trigger('copied', ['Copied!']);
+						} else {
+							copyembedbutton.trigger('copied', ['Copy with Ctrl-c']);
+						}
+					} catch (err) {
+						copyembedbutton.trigger('copied', ['Copy with Ctrl-c']);
+					}
+				});
+
+				copyembedbutton.bind('copied', function(event, message) {
+				$(this).attr('title', message)
+					.tooltip('fixTitle')
+					.tooltip('show')
+					.attr('title', "Copy to Clipboard")
+					.tooltip('fixTitle');
+				});
+			});
+  </script>
  </body>
 </html>

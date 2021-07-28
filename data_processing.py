@@ -1,4 +1,5 @@
 import numpy as np
+from img_proc_helper import normalize
 
 def read_train_data(dir_path : str = 'data'):
     # reads in data from the dataset
@@ -27,7 +28,7 @@ def read_batch(batch_size : int = 32, train : bool = True):
     np.random.shuffle(indices)
     for batch_i in range(len(total_y)//batch_size):
         idx = indices[batch_i*batch_size : (batch_i+1)*batch_size]
-        yield np.moveaxis(total_x[idx],-1,1).astype(np.float32)/255, total_y[idx]
+        yield normalize(total_x[idx]), total_y[idx]
     # yields a generator for batches of data
 
 # train_data, train_label, test_data, test_label = read_data()

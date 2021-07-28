@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 import os
 import random
+from img_proc_helper import resize_crop
 
 chars = ['A','B','C','D','E']
 database = []
@@ -15,22 +16,10 @@ for c in chars:
                 continue
             image = cv2.imread(f'data/{c}/{path}/{img_path}')
             # scales/pads the images so that they're all shape (100, 100, 3):
-            max_dim = np.argmax(image.shape[:2])
-            scale_percent = 100 / image.shape[max_dim]
-            width = round(image.shape[1] * scale_percent)
-            height = round(image.shape[0] * scale_percent) 
-            image = cv2.resize(image, (width, height), interpolation=cv2.INTER_AREA)
-            if max_dim == 0:
-                image = cv2.copyMakeBorder(image, 0,0,0,100-image.shape[1],cv2.BORDER_CONSTANT,0)
-            else:
-                image = cv2.copyMakeBorder(image, 0,100-image.shape[0],0,0,cv2.BORDER_CONSTANT,0)
+            image = resize_crop(image)
             database.append((image,ord(path)-ord('a')))
 
 random.shuffle(database)
-
-ind = [random.randint(0, 1000) for i in range(10)]
-for i in ind: 
-    print(database[i][0].shape)
 
 imgs = []
 labs = []
