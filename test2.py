@@ -1,5 +1,7 @@
-from os import read
-from data_processing import read_batch_train
+import cv2
 
-for train_x_batch, truth in read_batch_train(64):
-    print(train_x_batch.shape)
+img = cv2.imread('data/A/y/color_24_0002.png')
+
+cv2.imshow('image',img)
+
+cv2.waitKey(0)

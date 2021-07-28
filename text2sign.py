@@ -24,7 +24,8 @@ def word_query(word):
     except:
         try:
             content = soup.find("meta", property="og:video").get("content")
-            video_link = "https://youtube.com/watch?v=" + content[content.index("embed") + 6:]
+            # video_link = "https://youtube.com/watch?v=" + content[content.index("embed") + 6:]
+            video_link = "https://youtu.be/2lAe1cqCOXo"
             print(video_link)
             yt = YouTube(video_link)
             print(yt.__dict__)

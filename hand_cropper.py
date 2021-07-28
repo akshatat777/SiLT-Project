@@ -12,9 +12,9 @@ def crop_hand(cap, mode=False, margin=100, normalized_size = 100):
     success, img = cap.read()
     if not success:
         print('unable to read')
-        return None
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    results = hands.process(img)
+        return []
+    imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    results = hands.process(imgRGB)
     cropped_results = []
     if results.multi_hand_landmarks:
         for handLms in results.multi_hand_landmarks:
@@ -29,6 +29,7 @@ def crop_hand(cap, mode=False, margin=100, normalized_size = 100):
             end = (int(max(landmark_listx))+margin, int(max(landmark_listy))+margin)
             start = (int(min(landmark_listx))-margin, int(min(landmark_listy))-margin)
             cropped_img = img[start[1] : end[1], start[0] : end[0]]
-            print(cropped_img.shape)
+            if cropped_img.shape[0] <= 0 or cropped_img.shape[1] <= 0:
+                continue
             cropped_results.append(resize_crop(cropped_img))
     return cropped_results

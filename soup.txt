@@ -305,7 +305,7 @@ height: 25%;}*/
      <img alt="Pinterest" src="/img/socialmedia/pinterest.png"/>
     </a>
     <!-- Email -->
-    <a href="/cdn-cgi/l/email-protection#e7d8b492858d828493daaf8890c79388c794869ec7829182959e888982c78e89c7a68a82958e848689c7b48e8089c7ab86898092868082c1a588839edaaec2d5d7948690c2d5d7938f8e94c2d5d7868983c2d5d7938f8892808f93c2d5d78881c2d5d79e8892c6c2d5d7c78f93939794ddc8c8909090c9948e808986948bc9889580c8948e8089c8829182959e888982" rel="nofollow" title="Email">
+    <a href="/cdn-cgi/l/email-protection#cff09cbaada5aaacbbf287a0b8efbba0efbcaeb6efaab9aabdb6a0a1aaefa6a1ef8ea2aabda6acaea1ef9ca6a8a1ef83aea1a8baaea8aae98da0abb6f286eafdffbcaeb8eafdffbba7a6bceafdffaea1abeafdffbba7a0baa8a7bbeafdffa0a9eafdffb6a0baeeeafdffefa7bbbbbfbcf5e0e0b8b8b8e1bca6a8a1aebca3e1a0bda8e0bca6a8a1e0aab9aabdb6a0a1aa" rel="nofollow" title="Email">
      <img alt="Email" src="/img/socialmedia/email.png"/>
     </a>
    </div>
