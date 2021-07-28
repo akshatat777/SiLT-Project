@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-from img_proc_helper import resize_crop
+from data_processing import resize_crop
 
 def crop_hand(cap, mode=False, margin=100, normalized_size = 100):
     # margin gives some space between the tips of fingers and the bounding box (bbox) measured in pixels

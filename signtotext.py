@@ -3,7 +3,7 @@ import cv2
 import random
 from sign_recog_cnn import SignRecogCNN
 import torch
-from img_proc_helper import normalize
+from data_processing import normalize
 
 # images = np.load("data/images.npy")
 # labels = np.load("data/labels.npy")
@@ -11,6 +11,9 @@ from img_proc_helper import normalize
 
 # indx = [random.randint(0, 5000) for i in range(10)]
 # images = images[indx]
+# for i in range(10):
+#     cv2.imshow('image',images[i])
+#     cv2.waitKey(0)
 # images = normalize(images)
 # print(images.shape)
 # labels = labels[indx]

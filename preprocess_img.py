@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import os
 import random
-from img_proc_helper import resize_crop
+from data_processing import resize_crop
 
 chars = ['A','B','C','D','E']
 database = []

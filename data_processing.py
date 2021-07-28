@@ -1,6 +1,7 @@
 import numpy as np
-from img_proc_helper import normalize
+import cv2
 
+#DATA PROCESSING
 def read_train_data(dir_path : str = 'data'):
     # reads in data from the dataset
     train_data = np.load('data/images.npy')
@@ -33,3 +34,26 @@ def read_batch(batch_size : int = 32, train : bool = True):
 
 # train_data, train_label, test_data, test_label = read_data()
 # print(train_data[0])
+
+#====================================================================================
+# IMAGE PROCESSING
+
+def resize_crop(image):
+    max_dim = np.argmax(image.shape[:2])
+    scale_percent = 100 / image.shape[max_dim]
+    width = round(image.shape[1] * scale_percent)
+    height = round(image.shape[0] * scale_percent) 
+    image = cv2.resize(image, (width, height), interpolation=cv2.INTER_AREA)
+    if max_dim == 0:
+        image = cv2.copyMakeBorder(image, 0,0,0,100-image.shape[1],cv2.BORDER_CONSTANT,0)
+    else:
+        image = cv2.copyMakeBorder(image, 0,100-image.shape[0],0,0,cv2.BORDER_CONSTANT,0)
+    return image
+
+def normalize(imgs):
+    return swapaxis(imgs).astype(np.float32)/255
+
+def swapaxis(imgs):
+    return np.moveaxis(imgs,-1,1)
+
+#====================================================================================

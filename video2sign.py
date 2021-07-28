@@ -3,7 +3,7 @@ import numpy as np
 import torch
 from sign_recog_cnn import SignRecogCNN
 from hand_cropper import crop_hand
-from img_proc_helper import normalize
+from data_processing import normalize
 from signtotext import sign_to_text
 import time
 
@@ -23,6 +23,7 @@ with torch.no_grad():
             # print(crops.shape)
             preds = model(torch.tensor(normalize(crops)).to('cpu')).detach().numpy()
             # N, 26
+            print(np.argmax(preds,axis=-1))
             max_pred = preds[np.argmax(np.max(preds,axis=1))]
             cv2.imshow('crop',crops[0])
             text = sign_to_text([max_pred])[0]
