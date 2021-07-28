@@ -4,7 +4,7 @@ from torch import nn
 class SignRecogJoint(nn.Module):
     def __init__(self):
         super(SignRecogJoint, self).__init__()
-        self.dense1 = nn.Linear(42,128)
+        self.dense1 = nn.Linear(63,128)
         self.batch_norm1 = nn.BatchNorm1d(128)
         self.dense2 = nn.Linear(128,128)
         self.batch_norm2 = nn.BatchNorm1d(128)
