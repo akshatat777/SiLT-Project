@@ -1,8 +1,7 @@
 import torch
 from torch import nn
 import numpy as np
-from data_processing import read_test_data
-from data_processing import read_batch_train
+from data_processing import read_batch
 from sign_recog_cnn import SignRecogCNN
 from torch.utils.tensorboard import SummaryWriter
 
@@ -12,14 +11,13 @@ minLoss = 1e9
 
 def train(model, optimizer, batch_size, epochs):
     counter = 0
-    test_x, test_y = read_test_data()
-    test_x = np.moveaxis(test_x,-1,1).astype(np.float32)/255
     for epoch in range(epochs):
         loss = 0
         acc = 0
-        gen = read_batch_train(batch_size)
+        train_gen = read_batch(batch_size,True)
+        test_gen = read_batch(batch_size,False)
         # creates a generator for batch data and iterates through it below
-        for batch_i,(train_x_batch, truth) in enumerate(gen):
+        for batch_i,(train_x_batch, truth) in enumerate(train_gen):
             train_x_batch = torch.tensor(train_x_batch).to('cpu')
             truth = torch.tensor(truth).to('cpu')
             #print(train_x_batch.shape)
@@ -41,15 +39,22 @@ def train(model, optimizer, batch_size, epochs):
                 counter += 1
         with torch.no_grad():
             model.eval()
-            eval(model, test_x, test_y, epoch)
+            eval(model, test_gen, epoch)
             model.train()
 
-def eval(model, test_x, test_y, epoch):
+def eval(model, test_gen, epoch):
     # evaluates the loss using test data
     global minLoss
-    preds = model(test_x) 
-    loss = loss_fn(preds, test_y)
-    acc = torch.mean((torch.argmax(preds, dim=1) == test_y).float())
+    loss, count, acc = 0,0,0
+    for test_x_batch, truth in test_gen:
+        test_x_batch = torch.tensor(test_x_batch).to('cpu')
+        truth = torch.tensor(truth).to('cpu')
+        preds = model(test_x_batch) 
+        loss += loss_fn(preds, truth)
+        acc += torch.mean((torch.argmax(preds, dim=1) == truth).float())
+        count += 1
+    loss /= count
+    acc /= count
     writer.add_scalar('loss/eval', loss.detach().item(), epoch)
     writer.add_scalar('acc/eval', acc, epoch)
     # calculates accuracy, graphes on tensorboard
@@ -58,9 +63,7 @@ def eval(model, test_x, test_y, epoch):
         minLoss = loss
         torch.save(model.state_dict(), 'sign_recogn_cnn')
         # saves the model params whenever the loss goes below minLoss
-
-model = SignRecogCNN().to('cpu')
-epochs = 1
-batch_size = 64
-optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)
-train(model, optimizer, batch_size, epochs)
+# epochs = 1
+# batch_size = 64
+# optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)
+# train(model, optimizer, batch_size, epochs)

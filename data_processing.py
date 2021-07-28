@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 
 def read_train_data(dir_path : str = 'data'):
     # reads in data from the dataset
@@ -19,14 +18,16 @@ def read_test_data(dir_path : str = 'data'):
     # separates the data into testing data/labels and returns them
     return test_data, test_labels
 
-def read_batch_train(batch_size : int = 32):
-    train_x, train_y = read_train_data()
-    print(train_x.shape, train_y.shape)
-    indices = np.arange(len(train_y))
+def read_batch(batch_size : int = 32, train : bool = True):
+    if train:
+        total_x, total_y = read_train_data()
+    else:
+        total_x, total_y = read_test_data()
+    indices = np.arange(len(total_y))
     np.random.shuffle(indices)
-    for batch_i in range(len(train_y)//batch_size):
+    for batch_i in range(len(total_y)//batch_size):
         idx = indices[batch_i*batch_size : (batch_i+1)*batch_size]
-        yield np.moveaxis(train_x[idx],-1,1).astype(np.float32)/255, train_y[idx]
+        yield np.moveaxis(total_x[idx],-1,1).astype(np.float32)/255, total_y[idx]
     # yields a generator for batches of data
 
 # train_data, train_label, test_data, test_label = read_data()
