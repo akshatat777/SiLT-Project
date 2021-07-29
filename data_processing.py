@@ -1,6 +1,5 @@
 import numpy as np
 import cv2
-from torch._C import dtype
 
 def random_rotation(total_x):
     rand_a = np.random.uniform(-1,1)*np.pi/3
@@ -70,6 +69,10 @@ def resize_crop(image):
         image = cv2.copyMakeBorder(image, 0,0,0,100-image.shape[1],cv2.BORDER_CONSTANT,0)
     else:
         image = cv2.copyMakeBorder(image, 0,100-image.shape[0],0,0,cv2.BORDER_CONSTANT,0)
+    return image
+
+def resize(image):
+    image = cv2.resize(image, (100, 100), interpolation=cv2.INTER_AREA)
     return image
 
 def normalize(imgs):

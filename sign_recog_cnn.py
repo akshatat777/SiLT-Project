@@ -29,29 +29,30 @@ class SignRecogCNN(nn.Module):
 	def __init__(self):
 		super(SignRecogCNN, self).__init__()
 		# size: 100
-		self.conv1 = nn.Conv2d(3,128,(3,3),padding='same')
-		self.module1 = module_3_5(128,128)
-		self.module2 = module_3_5(128,128)
+		self.conv1 = nn.Conv2d(3,64,(3,3),padding='same')
+		self.module1 = module_3_5(64,64)
+		self.module2 = module_3_5(64,64)
 		self.pool1 = nn.MaxPool2d((3,3),2)
 		# MaxPool2d "slides the windows"
 		# size: 49
-		self.module3 = module_3_5(128,128)
-		self.module4 = module_3_5(128,128)
+		self.module3 = module_3_5(64,96)
+		self.module4 = module_3_5(96,96)
 		self.pool2 = nn.MaxPool2d((2,2),2)
 		# size: 24
-		self.module5 = module_3_5(128,128)
+		self.module5 = module_3_5(96,128)
 		self.module6 = module_3_5(128,128)
 		self.pool3 = nn.MaxPool2d((2,2),2)
 		# size: 11
-		self.module7 = module_3_5(128,128)
-		self.module8 = module_3_5(128,128)
+		self.module7 = module_3_5(128,144)
+		self.module8 = module_3_5(144,144)
 		self.pool4 = nn.MaxPool2d((2,2),2)
 		# size: 5
-		self.module9 = module_3_5(128,128)
-		self.module10 = module_3_5(128,128)
+		self.module9 = module_3_5(144,144)
+		self.module10 = module_3_5(144,144)
 		# global average pooling
-		self.dense1 = nn.Linear(128, 512)
+		self.dense1 = nn.Linear(144, 512)
 		self.batch_norm1 = nn.BatchNorm1d(512)
+		self.dropout1 = nn.Dropout(0.4)
 		self.dense2 = nn.Linear(512, 26)
 		self.relu = nn.ReLU()
 
@@ -77,7 +78,7 @@ class SignRecogCNN(nn.Module):
 		# shape (N,128,4,4)
 		x = torch.flatten(x, start_dim=2, end_dim=3)
 		x = torch.mean(x, dim=-1)
-		x = self.batch_norm1(self.relu(self.dense1(x)))
+		x = self.dropout1(self.batch_norm1(self.relu(self.dense1(x))))
 		x = self.dense2(x)
 		return x
 

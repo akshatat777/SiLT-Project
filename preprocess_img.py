@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import os
 import random
-from data_processing import resize_crop
+from data_processing import resize
 
 chars = ['A','B','C','D','E']
 database = []
@@ -16,7 +16,7 @@ for c in chars:
                 continue
             image = cv2.imread(f'data/{c}/{path}/{img_path}')
             # scales/pads the images so that they're all shape (100, 100, 3):
-            image = resize_crop(image)
+            image = resize(image)
             database.append((image,ord(path)-ord('a')))
 
 random.shuffle(database)

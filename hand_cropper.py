@@ -1,5 +1,4 @@
 import cv2
-from data_processing import resize_crop
 import numpy as np
 
 def crop_hand(img, hands):
