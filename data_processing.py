@@ -1,5 +1,32 @@
 import numpy as np
 import cv2
+from torch._C import dtype
+
+def random_rotation(total_x):
+    rand_a = np.random.uniform(-1,1)*np.pi/3
+    rand_b = np.random.uniform(-1,1)*np.pi/3
+    rand_c = np.random.uniform(-1,1)*np.pi/3
+    rotA = np.array([[1,0,0],[0,np.cos(rand_a),-np.sin(rand_a)],[0,np.sin(rand_a),np.cos(rand_a)]])
+    rotB = np.array([[np.cos(rand_b),0,np.sin(rand_b)],[0,1,0],[-np.sin(rand_b),0,np.cos(rand_b)]])
+    rotC = np.array([[np.cos(rand_c),-np.sin(rand_c),0],[np.sin(rand_c),np.cos(rand_c),0],[0,0,1]])
+    return total_x @ rotA @ rotB @ rotC
+
+def random_scale(total_x):
+    rand_scale = np.random.uniform(0.5,2)
+    return total_x * rand_scale
+
+def random_flip(total_x):
+    if np.random.randint(0,2) == 0:
+        return -total_x
+    else:
+        return total_x
+
+def data_augmentation(total_x):
+    # (N,1,21,3)
+    total_x = random_rotation(total_x)
+    total_x = random_scale(total_x)
+    total_x = random_flip(total_x)
+    return total_x
 
 #DATA PROCESSING
 def read_data(data_name : str, label_name : str):
@@ -25,7 +52,7 @@ def read_batch(batch_size : int = 32, train : bool = True, joints : bool = True)
     for batch_i in range(len(total_y)//batch_size):
         idx = indices[batch_i*batch_size : (batch_i+1)*batch_size]
         if joints:
-            yield total_x[idx], total_y[idx]
+            yield normalize_joints(total_x[idx]), total_y[idx]
         else:
             yield normalize(total_x[idx]), total_y[idx]
     # yields a generator for batches of data
@@ -48,7 +75,17 @@ def resize_crop(image):
 def normalize(imgs):
     return swapaxis(imgs).astype(np.float32)/255
 
+def normalize_joints(total_x):
+    total_x = total_x - total_x[:,:,:1,:]
+    factor = np.mean(np.linalg.norm(total_x-total_x[:,:,0:1,:],axis=-1,keepdims=True),axis=-2,keepdims=True)
+    if (factor != 0).all():
+        total_x /= factor
+    return total_x
+
 def swapaxis(imgs):
     return np.moveaxis(imgs,-1,1)
 
 #====================================================================================
+
+# j = np.random.random((1,1,21,3))
+# print(normalize_joints(j))

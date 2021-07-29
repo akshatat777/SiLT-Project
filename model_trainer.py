@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 import numpy as np
-from data_processing import read_batch
+from data_processing import read_batch, data_augmentation
 from sign_recogn_joint import SignRecogJoint
 from torch.utils.tensorboard import SummaryWriter
 
@@ -18,6 +18,7 @@ def train(model, optimizer, batch_size, epochs):
         test_gen = read_batch(batch_size,False)
         # creates a generator for batch data and iterates through it below
         for batch_i,(train_x_batch, truth) in enumerate(train_gen):
+            train_x_batch = data_augmentation(train_x_batch).astype(np.float32)
             train_x_batch = torch.flatten(torch.tensor(train_x_batch).to('cpu'),start_dim=1)
             truth = torch.tensor(truth).to('cpu')
             preds = model(train_x_batch)
@@ -62,7 +63,7 @@ def eval(model, test_gen, epoch):
         # saves the model params whenever the loss goes below minLoss
 
      
-epochs = 10
+epochs = 100
 batch_size = 64
 model = SignRecogJoint().to('cpu')
 optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)

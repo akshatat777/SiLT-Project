@@ -3,8 +3,7 @@ import numpy as np
 import torch
 from sign_recogn_joint import SignRecogJoint
 from hand_cropper import crop_hand
-from data_processing import normalize
-from signtotext import sign_to_text
+from data_processing import normalize_joints
 import time
 import mediapipe as mp
 
@@ -12,6 +11,7 @@ model = SignRecogJoint()
 model.load_state_dict(torch.load('sign_recogn_joint',map_location=torch.device('cpu')))
 model.eval()
 st = time.time()
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
 with torch.no_grad():
     cap = cv2.VideoCapture(0)
     texts = []
@@ -30,11 +30,12 @@ with torch.no_grad():
                 time.sleep(0.01)
                 return -1
             # print(crops.shape)
+            results = normalize_joints(results)
             preds = model(torch.flatten(torch.tensor(results).to('cpu'),start_dim=1)).detach().numpy()
             # N, 26
             print(np.argmax(preds,axis=-1))
             max_pred = preds[np.argmax(np.max(preds,axis=1))]
-            text = sign_to_text([max_pred])[0]
+            text = alphabet[np.argmax(max_pred)]
             texts.append(text)
             print(text)
             cv2.imshow('image',img)

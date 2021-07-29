@@ -4,6 +4,7 @@ import random
 from sign_recog_cnn import SignRecogCNN
 import torch
 from data_processing import normalize
+from collections import Counter
 
 # images = np.load("data/images.npy")
 # labels = np.load("data/labels.npy")
@@ -33,13 +34,20 @@ from data_processing import normalize
 #     preds = model(images)
 
 # converts each sign to appropriate text.
-def sign_to_text(sign_encodings):
+def sign_to_text(sign_encodings, confidence_scores):
     """ Converts a list of signs () 
         and returns their corresponding text."""
     alphabet = "abcdefghijklmnopqrstuvwxyz"
     ls_str = []
+    interval_str = []
     for encoding in sign_encodings:
-        ls_str.append(alphabet[np.argmax(encoding)])
+        interval_str.append(alphabet[np.argmax(encoding)])
+        if len(interval_str) == 15:
+            letters_descending = Counter(interval_str).most_common()
+            for letter in letters_descending:
+                if np.mean(confidence_scores[])
+            ls_str.append(interval_str)
     return ls_str
 
 # print(sign_to_text(preds))
+
