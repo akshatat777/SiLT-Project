@@ -45,7 +45,7 @@ def sign_to_text(text, confidence_scores, interv = 10, threshold=0.7):
     for i, letter in enumerate(text):
         print((i, letter))
         interval_str.append((i,letter))
-        # if len(interval_str) == interv:
+        if len(interval_str) == interv:
             print(interval_str)
             letters_descending = Counter([letter for index,letter in interval_str]).most_common()
             print(letters_descending)
