@@ -1,23 +1,21 @@
 import cv2
-from torch.functional import norm
-from data_processing import normalize
-from sign_recog_cnn import SignRecogCNN
-import torch
-from signtotext import sign_to_text
+from hand_cropper import crop_hand
+import gc
+import mediapipe as mp
 
-img = cv2.imread('handtest.png')
-
-cv2.imshow('image', img)
-
-cv2.waitKey(0)
-
-img = normalize(img[None,...])
-
-model = SignRecogCNN()
-model.load_state_dict(torch.load('sign_recogn_cnn_larger',map_location=torch.device('cpu')))
-model.eval()
-print(img.shape)
-with torch.no_grad():
-    preds = model(torch.tensor(img).to('cpu'))
-    print(preds)
-    print(sign_to_text(preds))
+cap = cv2.VideoCapture(0)
+hands = mp.solutions.hands.Hands(static_image_mode=False,
+                    max_num_hands=1,
+                    min_detection_confidence=0.5,
+                    min_tracking_confidence=0.45)
+while True:
+	suc, img = cap.read()
+	if not suc:
+		continue
+	results = crop_hand(img,hands)
+	cv2.imshow('image',img)
+	if cv2.waitKey(1) & 0xFF == ord('q'):
+		cv2.destroyAllWindows()
+		break
+	del img, results
+	gc.collect()

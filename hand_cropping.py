@@ -2,7 +2,7 @@ import cv2
 import os
 import mediapipe as mp
 import numpy as np
-from img_proc_helper import resize_crop
+from data_processing import resize_crop
 
 def crop_hand_data(image_folder, hand_num=1):
     mpHands = mp.solutions.hands

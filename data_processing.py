@@ -2,38 +2,33 @@ import numpy as np
 import cv2
 
 #DATA PROCESSING
-def read_train_data(dir_path : str = 'data'):
+def read_data(data_name : str, label_name : str):
     # reads in data from the dataset
-    train_data = np.load('data/images.npy')
-    print(train_data.shape)
-    train_labels = np.load('data/labels.npy')
-    print(train_labels.shape)
+    data = np.load(f'data/{data_name}.npy')
+    labels = np.load(f'data/{label_name}.npy')
     # separates the data into training data/labels and returns them
-    return train_data, train_labels
+    return data, labels
 
-def read_test_data(dir_path : str = 'data'):
-    # reads in data from the dataset
-    test_data = np.load('data/test_images.npy')
-    print(test_data.shape)
-    test_labels = np.load('data/test_labels.npy')
-    print(test_labels.shape)
-    # separates the data into testing data/labels and returns them
-    return test_data, test_labels
-
-def read_batch(batch_size : int = 32, train : bool = True):
-    if train:
-        total_x, total_y = read_train_data()
+def read_batch(batch_size : int = 32, train : bool = True, joints : bool = True):
+    if joints:
+        if train:
+            total_x, total_y = read_data('n_joints_train','n_labels_train')
+        else:
+            total_x, total_y = read_data('n_joints_test','n_labels_test')
     else:
-        total_x, total_y = read_test_data()
+        if train:
+            total_x, total_y = read_data('images','labels')
+        else:
+            total_x, total_y = read_data('test_images','test_labels')
     indices = np.arange(len(total_y))
     np.random.shuffle(indices)
     for batch_i in range(len(total_y)//batch_size):
         idx = indices[batch_i*batch_size : (batch_i+1)*batch_size]
-        yield normalize(total_x[idx]), total_y[idx]
+        if joints:
+            yield total_x[idx], total_y[idx]
+        else:
+            yield normalize(total_x[idx]), total_y[idx]
     # yields a generator for batches of data
-
-# train_data, train_label, test_data, test_label = read_data()
-# print(train_data[0])
 
 #====================================================================================
 # IMAGE PROCESSING

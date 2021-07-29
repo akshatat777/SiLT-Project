@@ -2,7 +2,7 @@ import torch
 from torch import nn
 import numpy as np
 from data_processing import read_batch
-from sign_recog_cnn import SignRecogCNN
+from sign_recogn_joint import SignRecogJoint
 from torch.utils.tensorboard import SummaryWriter
 
 loss_fn = nn.CrossEntropyLoss()
@@ -18,18 +18,15 @@ def train(model, optimizer, batch_size, epochs):
         test_gen = read_batch(batch_size,False)
         # creates a generator for batch data and iterates through it below
         for batch_i,(train_x_batch, truth) in enumerate(train_gen):
-            train_x_batch = torch.tensor(train_x_batch).to('cpu')
+            train_x_batch = torch.flatten(torch.tensor(train_x_batch).to('cpu'),start_dim=1)
             truth = torch.tensor(truth).to('cpu')
-            #print(train_x_batch.shape)
             preds = model(train_x_batch)
-            # (N, 24)
+            # (N, 26)
             loss = loss_fn(preds, truth)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
             with torch.no_grad():
-                #print(preds.shape)
-                #print(preds.dtype)
                 acc = torch.mean((torch.argmax(preds, dim=1) == truth).float())
                 writer.add_scalar('loss/train', loss.detach().item(), counter)
                 writer.add_scalar('acc/train', acc, counter)
@@ -47,7 +44,7 @@ def eval(model, test_gen, epoch):
     global minLoss
     loss, count, acc = 0,0,0
     for test_x_batch, truth in test_gen:
-        test_x_batch = torch.tensor(test_x_batch).to('cpu')
+        test_x_batch = torch.flatten(torch.tensor(test_x_batch).to('cpu'),start_dim=1)
         truth = torch.tensor(truth).to('cpu')
         preds = model(test_x_batch) 
         loss += loss_fn(preds, truth)
@@ -61,9 +58,12 @@ def eval(model, test_gen, epoch):
     print(f'eval {epoch}, loss: {loss}, acc: {acc}')
     if loss < minLoss:
         minLoss = loss
-        torch.save(model.state_dict(), 'sign_recogn_cnn')
+        torch.save(model.state_dict(), 'sign_recogn_joint')
         # saves the model params whenever the loss goes below minLoss
-# epochs = 1
-# batch_size = 64
-# optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)
-# train(model, optimizer, batch_size, epochs)
+
+     
+epochs = 10
+batch_size = 64
+model = SignRecogJoint().to('cpu')
+optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)
+train(model, optimizer, batch_size, epochs)
