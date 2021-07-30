@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import io
 from moviepy.editor import VideoFileClip, concatenate_videoclips
-from pytube import YouTube
+from SpeechToText import load_mic
 
 def word_query(word):
     # word = word.replace(" ", "%2B")
@@ -23,15 +23,14 @@ def word_query(word):
         return word + ".mp4"
     except:
         try:
+            import youtube_dl
             content = soup.find("meta", property="og:video").get("content")
-            # video_link = "https://youtube.com/watch?v=" + content[content.index("embed") + 6:]
-            video_link = "https://youtu.be/2lAe1cqCOXo"
+            video_link = "https://youtube.com/watch?v=" + content[content.index("embed") + 6:]
+            ydl_opts = {'outtmpl': word + '.%(ext)s'}
+            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([video_link])
+                print(ydl)
             print(video_link)
-            yt = YouTube(video_link)
-            print(yt.__dict__)
-            video = yt.streams
-            print(video)
-            # video.download(filename=word + ".mp4")
             return word + ".mp4"
         except Exception as e:
             print(e)
@@ -49,7 +48,9 @@ def words_to_video(words):
     video = concatenate_videoclips(mp4_list)
     video.write_videofile(words + ".mp4")
 
-words_to_video("everyone")
+text = load_mic()
+words_to_video(text)
+# words_to_video("Hello everyone good morning")
         
 
 # import torch

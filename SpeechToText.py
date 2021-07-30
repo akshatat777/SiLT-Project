@@ -33,4 +33,4 @@ def load_audio(path: str, timeout=5):
         # ^ uses the Google Speech Recognition API to process and translate the audio
         # will provide more notes on this later
 
-print("We think you said: " + load_mic())
+# print("We think you said: " + load_mic())
