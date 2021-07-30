@@ -50,8 +50,6 @@ def words_to_video(words):
 
 text = load_mic()
 words_to_video(text)
-# words_to_video("Hello everyone good morning")
-        
 
 # import torch
 # from torch import nn

@@ -1,9 +1,12 @@
 import numpy as np
 import cv2
 import random
+
+from numpy.core.defchararray import count
 from sign_recog_cnn import SignRecogCNN
 import torch
-from img_proc_helper import normalize
+from data_processing import normalize
+from collections import Counter
 
 # images = np.load("data/images.npy")
 # labels = np.load("data/labels.npy")
@@ -11,6 +14,9 @@ from img_proc_helper import normalize
 
 # indx = [random.randint(0, 5000) for i in range(10)]
 # images = images[indx]
+# for i in range(10):
+#     cv2.imshow('image',images[i])
+#     cv2.waitKey(0)
 # images = normalize(images)
 # print(images.shape)
 # labels = labels[indx]
@@ -30,13 +36,30 @@ from img_proc_helper import normalize
 #     preds = model(images)
 
 # converts each sign to appropriate text.
-def sign_to_text(sign_encodings):
+def sign_to_text(text, confidence_scores, interv = 10, threshold=0.7):
     """ Converts a list of signs () 
         and returns their corresponding text."""
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    # (T, 26)
     ls_str = []
-    for encoding in sign_encodings:
-        ls_str.append(alphabet[np.argmax(encoding)])
+    interval_str = []
+    for i, letter in enumerate(text):
+        print((i, letter))
+        interval_str.append((i,letter))
+        if len(interval_str) == interv:
+            print(interval_str)
+            letters_descending = Counter([letter for index,letter in interval_str]).most_common()
+            print(letters_descending)
+            for l,_ in letters_descending:
+                print([index for index, element in interval_str if element == l])
+                print(confidence_scores[[index for index, element in interval_str if element == l]])
+                if np.mean(confidence_scores[[index for index, element in interval_str if element == l]]) > threshold:
+                    ls_str.append(l)
+                    break
+            interval_str = []
     return ls_str
+text = list('hhhhhhhhheeeeeeellllllllllll llllllllllooooooooo         mmmmmmmmmmmmyyyyyyyyyyy nnnnnnnnnnaaaaaaaaaaaammmmmmmmmeeeeeeeeeee             iiiiiiiisssssssssss         ppppppppppiiiiiiiiiikkkkkkkkkkkaaaaaaaaaa')
+confidence = np.ones((len(text)))
+print(sign_to_text(text,confidence))
 
 # print(sign_to_text(preds))
+
