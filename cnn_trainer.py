@@ -12,8 +12,6 @@ minLoss = 1e9
 def train(model, optimizer, batch_size, epochs):
     counter = 0
     for epoch in range(epochs):
-        loss = 0
-        acc = 0
         train_gen = read_batch(batch_size,True,False)
         test_gen = read_batch(batch_size,False,False)
         # creates a generator for batch data and iterates through it below
