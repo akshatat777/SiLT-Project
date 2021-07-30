@@ -1,5 +1,5 @@
 import cv2
-from hand_cropper import crop_hand_cnn
+from hand_cropping import crop_hand_cnn
 import gc
 import mediapipe as mp
 

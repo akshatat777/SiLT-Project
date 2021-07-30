@@ -43,23 +43,38 @@ def sign_to_text(text, confidence_scores, interv = 10, threshold=0.7):
     ls_str = []
     interval_str = []
     for i, letter in enumerate(text):
-        print((i, letter))
+        #print((i, letter))
         interval_str.append((i,letter))
         if len(interval_str) == interv:
-            print(interval_str)
+            #print(interval_str)
             letters_descending = Counter([letter for index,letter in interval_str]).most_common()
-            print(letters_descending)
+            #print(letters_descending)
             for l,_ in letters_descending:
-                print([index for index, element in interval_str if element == l])
-                print(confidence_scores[[index for index, element in interval_str if element == l]])
+                #print([index for index, element in interval_str if element == l])
+                #print(confidence_scores[[index for index, element in interval_str if element == l]])
                 if np.mean(confidence_scores[[index for index, element in interval_str if element == l]]) > threshold:
                     ls_str.append(l)
                     break
             interval_str = []
     return ls_str
-text = list('hhhhhhhhheeeeeeellllllllllll llllllllllooooooooo         mmmmmmmmmmmmyyyyyyyyyyy nnnnnnnnnnaaaaaaaaaaaammmmmmmmmeeeeeeeeeee             iiiiiiiisssssssssss         ppppppppppiiiiiiiiiikkkkkkkkkkkaaaaaaaaaa')
-confidence = np.ones((len(text)))
-print(sign_to_text(text,confidence))
 
+def filter_text(ls_str, threshold=3):
+    letters = []
+    char = ls_str[0]
+    count = 1
+    for character in ls_str:
+        if character != char:
+            if count > threshold:
+                letters.append(char)
+                char = character
+                count = 0
+        count += 1
+    if count > threshold:
+                letters.append(char)
+    return ''.join(letters)
+
+# text = list('hhhhhhhhheeeeeeellllllllllll llllllllllooooooooo         mmmmmmmmmmmmyyyyyyyyyyy nnnnnnnnnnaaaaaaaaaaaammmmmmmmmeeeeeeeeeee             iiiiiiiisssssssssss         ppppppppppiiiiiiiiiikkkkkkkkkkkaaaaaaaaaa')
+# confidence = np.ones((len(text)))
+# print(sign_to_text(text,confidence))
 # print(sign_to_text(preds))
 

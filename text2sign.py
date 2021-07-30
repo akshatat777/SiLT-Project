@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import io
 from moviepy.editor import VideoFileClip, concatenate_videoclips
-from SpeechToText import load_mic
+#from audio_processing import load_mic
 
 def word_query(word):
     # word = word.replace(" ", "%2B")
@@ -47,9 +47,10 @@ def words_to_video(words):
             print(query + " " + word)
     video = concatenate_videoclips(mp4_list)
     video.write_videofile(words + ".mp4")
+    return words + ".mp4"
 
-text = load_mic()
-words_to_video(text)
+# text = load_mic()
+# words_to_video(text)
 
 # import torch
 # from torch import nn
