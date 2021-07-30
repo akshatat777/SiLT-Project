@@ -72,7 +72,7 @@ def resize_crop(image):
     return image
 
 def resize(image):
-    image = cv2.resize(image, (100, 100), interpolation=cv2.INTER_AREA)
+    image = cv2.resize(image, (70, 70), interpolation=cv2.INTER_AREA)
     return image
 
 def normalize(imgs):

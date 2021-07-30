@@ -35,10 +35,11 @@ def train(model, optimizer, batch_size, epochs):
                         print(f'train {epoch}, loss: {loss}, acc: {acc}')
             train_once(counter, train_x_batch, truth)
             counter += 1
-        with torch.no_grad():
-            model.eval()
-            eval(model, test_gen, epoch)
-            model.train()
+            with torch.no_grad():
+                if batch_i % 10:
+                    model.eval()
+                    eval(model, test_gen, epoch)
+                    model.train()
 
 def eval(model, test_gen, epoch):
     # evaluates the loss using test data

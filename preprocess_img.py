@@ -17,6 +17,7 @@ for c in chars:
             image = cv2.imread(f'data/{c}/{path}/{img_path}')
             # scales/pads the images so that they're all shape (100, 100, 3):
             image = resize(image)
+            image = cv2.copyMakeBorder(image, 0,224-image.shape[0],0,224-image.shape[1],cv2.BORDER_CONSTANT,0)
             database.append((image,ord(path)-ord('a')))
 
 random.shuffle(database)
@@ -27,7 +28,7 @@ t_imgs = []
 t_labs = []
 train_split = 0.8
 for i, (img, lab) in enumerate(database):
-    if img.shape != (100,100,3):
+    if img.shape != (224,224,3):
         print('abnormal shape')
         print(img.shape)
     if i > train_split*len(database):
