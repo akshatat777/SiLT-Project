@@ -1,13 +1,18 @@
 import torch
 from torch import nn
 import numpy as np
-from data_processing import read_batch, data_augmentation
-from sign_recogn_joint import SignRecogJoint
+from hand_cropping import crop_hand_data
+from data_processing import read_batch, data_augmentation, normalize_joints
+from sign_recogn_joint import RecogJoint
 from torch.utils.tensorboard import SummaryWriter
 
 loss_fn = nn.CrossEntropyLoss()
 writer = SummaryWriter()
 minLoss = 1e9
+
+t_joints, t_labs = crop_hand_data('test')
+t_joints = torch.tensor(normalize_joints(t_joints[:,0,...])).to('cpu')
+t_labs = torch.tensor(t_labs).to('cpu')
 
 def train(model, optimizer, batch_size, epochs):
     counter = 0
@@ -19,7 +24,7 @@ def train(model, optimizer, batch_size, epochs):
         # creates a generator for batch data and iterates through it below
         for batch_i,(train_x_batch, truth) in enumerate(train_gen):
             train_x_batch = data_augmentation(train_x_batch).astype(np.float32)
-            train_x_batch = torch.flatten(torch.tensor(train_x_batch).to('cpu'),start_dim=1)
+            train_x_batch = torch.tensor(train_x_batch).to('cpu')
             truth = torch.tensor(truth).to('cpu')
             preds = model(train_x_batch)
             # (N, 26)
@@ -32,12 +37,16 @@ def train(model, optimizer, batch_size, epochs):
                 writer.add_scalar('loss/train', loss.detach().item(), counter)
                 writer.add_scalar('acc/train', acc, counter)
                 # calculates accuracy, graphes on tensorboard
-                if batch_i%5==0:
+                if batch_i%10==0:
                     print(f'train {epoch}, loss: {loss}, acc: {acc}')
                 counter += 1
         with torch.no_grad():
             model.eval()
             eval(model, test_gen, epoch)
+            preds = model(t_joints.float())
+            loss = loss_fn(preds,t_labs)
+            acc = torch.mean((torch.argmax(preds, dim=1) == t_labs).float())
+            print(f'realtest: loss: {loss}, acc: {acc}')
             model.train()
 
 def eval(model, test_gen, epoch):
@@ -45,7 +54,7 @@ def eval(model, test_gen, epoch):
     global minLoss
     loss, count, acc = 0,0,0
     for test_x_batch, truth in test_gen:
-        test_x_batch = torch.flatten(torch.tensor(test_x_batch).to('cpu'),start_dim=1)
+        test_x_batch = torch.tensor(test_x_batch).to('cpu')
         truth = torch.tensor(truth).to('cpu')
         preds = model(test_x_batch) 
         loss += loss_fn(preds, truth)
@@ -63,8 +72,8 @@ def eval(model, test_gen, epoch):
         # saves the model params whenever the loss goes below minLoss
 
      
-epochs = 100
+epochs = 80
 batch_size = 64
-model = SignRecogJoint().to('cpu')
-optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)
+model = RecogJoint().to('cpu')
+optimizer = torch.optim.Adam(model.parameters(),lr=5*1e-5)
 train(model, optimizer, batch_size, epochs)

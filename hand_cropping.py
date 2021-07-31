@@ -10,8 +10,9 @@ def crop_hand_data(image_folder, hand_num=1):
     hands = mpHands.Hands(static_image_mode=True,
                         max_num_hands=hand_num,
                         min_detection_confidence=0.5)
-    RGBimgs = np.array([resize_crop(cv2.flip(cv2.cvtColor(cv2.imread(f'{image_folder}/{file}'), cv2.COLOR_BGR2RGB),1)) for file in os.listdir(image_folder) if not 'DS_Store' in file])
-    
+    files = [file for file in os.listdir(image_folder) if not 'DS_Store' in file]
+    RGBimgs = np.array([resize_crop(cv2.flip(cv2.cvtColor(cv2.imread(f'{image_folder}/{file}'), cv2.COLOR_BGR2RGB),1)) for file in files])
+    labs = [ord(file.split('.')[0])-ord('a') for file in files]
     all_results = []
     for img in RGBimgs:
         results = hands.process(img)
@@ -21,7 +22,7 @@ def crop_hand_data(image_folder, hand_num=1):
         results_list = np.array([[[lm.x, lm.y, lm.z] for lm in hand_lms.landmark] for hand_lms in results.multi_hand_landmarks])
         all_results.append(results_list)
 
-    return np.array(all_results)
+    return np.array(all_results),labs
 
 #=======================================================================================================================================
 # FUNCTIONS FROM HAND_CROPPER

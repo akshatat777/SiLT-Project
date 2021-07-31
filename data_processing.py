@@ -1,32 +1,6 @@
 import numpy as np
 import cv2
 
-def random_rotation(total_x):
-    rand_a = np.random.uniform(-1,1)*np.pi/3
-    rand_b = np.random.uniform(-1,1)*np.pi/3
-    rand_c = np.random.uniform(-1,1)*np.pi/3
-    rotA = np.array([[1,0,0],[0,np.cos(rand_a),-np.sin(rand_a)],[0,np.sin(rand_a),np.cos(rand_a)]])
-    rotB = np.array([[np.cos(rand_b),0,np.sin(rand_b)],[0,1,0],[-np.sin(rand_b),0,np.cos(rand_b)]])
-    rotC = np.array([[np.cos(rand_c),-np.sin(rand_c),0],[np.sin(rand_c),np.cos(rand_c),0],[0,0,1]])
-    return total_x @ rotA @ rotB @ rotC
-
-def random_scale(total_x):
-    rand_scale = np.random.uniform(0.5,2)
-    return total_x * rand_scale
-
-def random_flip(total_x):
-    if np.random.randint(0,2) == 0:
-        return -total_x
-    else:
-        return total_x
-
-def data_augmentation(total_x):
-    # (N,1,21,3)
-    total_x = random_rotation(total_x)
-    total_x = random_scale(total_x)
-    total_x = random_flip(total_x)
-    return total_x
-
 #DATA PROCESSING
 def read_data(data_name : str, label_name : str):
     # reads in data from the dataset
@@ -38,9 +12,9 @@ def read_data(data_name : str, label_name : str):
 def read_batch(batch_size : int = 32, train : bool = True, joints : bool = True):
     if joints:
         if train:
-            total_x, total_y = read_data('n_joints_train','n_labels_train')
+            total_x, total_y = read_data('train_joints','train_lab_joint')
         else:
-            total_x, total_y = read_data('n_joints_test','n_labels_test')
+            total_x, total_y = read_data('test_joints','test_lab_joint')
     else:
         if train:
             total_x, total_y = read_data('images','labels')
@@ -53,6 +27,7 @@ def read_batch(batch_size : int = 32, train : bool = True, joints : bool = True)
         if joints:
             yield normalize_joints(total_x[idx]), total_y[idx]
         else:
+            #imgs = [cv2.copyMakeBorder(img, 0,224-img.shape[0],0,224-img.shape[1],cv2.BORDER_CONSTANT,0) for img in total_x[idx]]
             yield normalize(total_x[idx]), total_y[idx]
     # yields a generator for batches of data
 
@@ -78,12 +53,6 @@ def resize(image):
 def normalize(imgs):
     return swapaxis(imgs).astype(np.float32)/255
 
-def normalize_joints(total_x):
-    total_x = total_x - total_x[:,:,:1,:]
-    factor = np.mean(np.linalg.norm(total_x-total_x[:,:,0:1,:],axis=-1,keepdims=True),axis=-2,keepdims=True)
-    if (factor != 0).all():
-        total_x /= factor
-    return total_x
 
 def swapaxis(imgs):
     return np.moveaxis(imgs,-1,1)
@@ -91,4 +60,49 @@ def swapaxis(imgs):
 #====================================================================================
 
 # j = np.random.random((1,1,21,3))
+
+def normalize_joints(total_x):
+    total_x = total_x - total_x[:,:1,:]
+    factor = np.mean(np.linalg.norm(total_x-total_x[:,0:1,:],axis=-1,keepdims=True),axis=-2,keepdims=True)
+    if (factor != 0).all():
+        total_x /= factor
+    return normalize_rotation(to_polar(total_x))
+
+def to_polar(total_x):
+    angles = np.arctan2(total_x[:,:,1], total_x[:,:,0])
+    radi = np.linalg.norm(total_x[:,:,:],axis=-1)
+    depth = total_x[:,:,2]
+    # (N, 21)
+    return np.concatenate([angles[...,None],radi[...,None],depth[...,None]],axis=-1)
+
+def normalize_rotation(total_x):
+    shift = total_x[:,8,0]-0
+    total_x[:,:,0]-=shift[...,None]
+    return total_x
+
+def random_rotate(total_x):
+    angle = np.random.uniform(-1,1)*np.pi/4
+    total_x[:,:,0]+=angle
+    return total_x
+
+def random_scale(total_x):
+    rand_scale = np.random.uniform(0.2,5)
+    total_x[:,:,1] *= rand_scale
+    total_x[:,:,2] *= rand_scale
+    return total_x
+
+def random_flip(total_x):
+    if np.random.randint(0,2) == 0:
+        total_x[:,:,0] = np.where(total_x[:,:,0]>0,np.pi - total_x[:,:,0],- np.pi - total_x[:,:,0])
+        return total_x
+    else:
+        return total_x
+
+def data_augmentation(total_x):
+    # (N,1,21,3)
+    total_x = random_scale(total_x)
+    total_x = random_flip(total_x)
+    return random_rotate(total_x)
+    
+
 # print(normalize_joints(j))
