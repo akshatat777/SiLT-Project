@@ -53,6 +53,7 @@ def read_batch(batch_size : int = 32, train : bool = True, joints : bool = True)
         if joints:
             yield normalize_joints(total_x[idx]), total_y[idx]
         else:
+            #imgs = [cv2.copyMakeBorder(img, 0,224-img.shape[0],0,224-img.shape[1],cv2.BORDER_CONSTANT,0) for img in total_x[idx]]
             yield normalize(total_x[idx]), total_y[idx]
     # yields a generator for batches of data
 

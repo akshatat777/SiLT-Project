@@ -9,7 +9,7 @@ import mediapipe as mp
 # from signtotext import sign_to_text
 
 model = SignRecogCNN()
-model.load_state_dict(torch.load('sign_recogn_cnn',map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('sign_recogn_cnn-4',map_location=torch.device('cpu')))
 model.eval()
 st = time.time()
 alphabet = 'abcdefghijklmnopqrstuvwxyz'

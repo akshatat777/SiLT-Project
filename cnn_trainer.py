@@ -13,7 +13,6 @@ def train(model, optimizer, batch_size, epochs):
     counter = 0
     for epoch in range(epochs):
         train_gen = read_batch(batch_size,True,False)
-        test_gen = read_batch(batch_size,False,False)
         # creates a generator for batch data and iterates through it below
         for batch_i,(train_x_batch, truth) in enumerate(train_gen):
             def train_once(counter, train_x_batch, truth):
@@ -36,7 +35,8 @@ def train(model, optimizer, batch_size, epochs):
             train_once(counter, train_x_batch, truth)
             counter += 1
             with torch.no_grad():
-                if batch_i % 10:
+                if batch_i % 100:
+                    test_gen = read_batch(batch_size,False,False)
                     model.eval()
                     eval(model, test_gen, epoch)
                     model.train()

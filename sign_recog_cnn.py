@@ -2,52 +2,92 @@ import torch
 from torch import nn
 from torchvision.models import mobilenet_v3_large
 
-class SignRecogCNN(nn.Module):
-	def __init__(self):
-		super(SignRecogCNN, self).__init__()
-		mobilenet = mobilenet_v3_large(pretrained=True)
-		extract_layers = list(mobilenet.children())[0][:7]
-		self.feature_extract = nn.Sequential(*extract_layers)
-		for param in self.feature_extract.parameters():
-			param.requires_grad = False
-		self.conv1 = nn.Conv2d(40,120,(1,1),padding='same')
-		self.batchnorm1 = nn.BatchNorm2d(120)
-		self.conv2 = nn.Conv2d(120,40,(3,3),padding='same')
-		self.batchnorm2 = nn.BatchNorm2d(40)
-		self.conv3 = nn.Conv2d(40,120,(3,3),padding='same')
-		self.batchnorm3 = nn.BatchNorm2d(120)
-		self.pool1 = nn.MaxPool2d((3,3),stride=2)
-		# 13*13*40
-		self.conv4 = nn.Conv2d(120,40,(3,3),padding='same')
-		self.batchnorm4 = nn.BatchNorm2d(40)
-		self.conv5 = nn.Conv2d(40,120,(3,3),padding='same')
-		self.batchnorm5 = nn.BatchNorm2d(120)
-		self.pool2 = nn.MaxPool2d((4,4),stride=2)
-		# 5*5*40
-		self.conv6 = nn.Conv2d(120,40,(3,3),padding='same')
-		self.batchnorm6 = nn.BatchNorm2d(40)
-		self.conv7 = nn.Conv2d(40,120,(3,3),padding='same')
-		self.batchnorm7 = nn.BatchNorm2d(120)
-		self.dense1 = nn.Linear(120,512)
-		self.batchnorm8 = nn.BatchNorm1d(512)
-		self.dense2 = nn.Linear(512,26)
-		self.relu = nn.ReLU()
 
-	def forward(self, x):
-		x = self.feature_extract(x)
-		x1 = self.batchnorm1(self.relu(self.conv1(x)))
-		x = self.batchnorm2(self.relu(self.conv2(x1)))
-		x = self.relu(self.conv3(x))
-		x3 = self.batchnorm3(self.pool1(x+x1))
-		x = self.batchnorm4(self.relu(self.conv4(x3)))
-		x = self.relu(self.conv5(x))
-		x5 = self.batchnorm5(self.pool2(x+x3))
-		x = self.batchnorm6(self.relu(self.conv6(x5)))
-		x = self.batchnorm7(self.relu(self.conv7(x))+x5)
-		x = torch.flatten(x, start_dim=2, end_dim=3)
-		x = torch.mean(x, dim=2)
-		x = self.batchnorm8(self.relu(self.dense1(x)))
-		return self.dense2(x)
+class SignRecogCNN(nn.Module):
+  def __init__(self):
+    super(SignRecogCNN, self).__init__()
+    # 70*70*3
+    self.conv1 = nn.Conv2d(3,32,(7,7),stride=2,padding=2)
+    self.batchnorm1 = nn.BatchNorm2d(32)
+    # 34*34*64
+    self.conv2 = nn.Conv2d(32,32,(3,3),stride=2,padding=1)
+    self.batchnorm2 = nn.BatchNorm2d(32)
+    # 17*17*64
+    self.conv3 = nn.Conv2d(32,48,(4,4),stride=2)
+    self.batchnorm3 = nn.BatchNorm2d(48)
+    # 7*7*96
+    self.conv4 = nn.Conv2d(48,64,(3,3))    
+    self.batchnorm4 = nn.BatchNorm2d(64)
+    # 5*5*128
+    self.conv5 = nn.Conv2d(64,64,(1,1))    
+    self.batchnorm5 = nn.BatchNorm2d(64)
+    self.dense1 = nn.Linear(64,32)
+    self.batchnorm6 = nn.BatchNorm1d(32)
+    self.dense2 = nn.Linear(32,26)
+    self.relu = nn.ReLU()
+
+  def forward(self, x):
+    x = self.batchnorm1(self.relu(self.conv1(x)))
+    x = self.batchnorm2(self.relu(self.conv2(x)))
+    x = self.batchnorm3(self.relu(self.conv3(x)))
+    x = self.batchnorm4(self.relu(self.conv4(x)))
+    x = self.batchnorm5(self.relu(self.conv5(x)))
+    x = torch.mean(torch.flatten(x, start_dim=2),dim=-1)
+    x = self.batchnorm6(self.relu(self.dense1(x)))
+    return self.dense2(x)
+
+
+
+
+
+
+
+# class SignRecogCNN(nn.Module):
+# 	def __init__(self):
+# 		super(SignRecogCNN, self).__init__()
+# 		mobilenet = mobilenet_v3_large(pretrained=True)
+# 		extract_layers = list(mobilenet.children())[0][:7]
+# 		self.feature_extract = nn.Sequential(*extract_layers)
+# 		for param in self.feature_extract.parameters():
+# 			param.requires_grad = False
+# 		self.conv1 = nn.Conv2d(40,120,(1,1),padding='same')
+# 		self.batchnorm1 = nn.BatchNorm2d(120)
+# 		self.conv2 = nn.Conv2d(120,40,(3,3),padding='same')
+# 		self.batchnorm2 = nn.BatchNorm2d(40)
+# 		self.conv3 = nn.Conv2d(40,120,(3,3),padding='same')
+# 		self.batchnorm3 = nn.BatchNorm2d(120)
+# 		self.pool1 = nn.MaxPool2d((3,3),stride=2)
+# 		# 13*13*40
+# 		self.conv4 = nn.Conv2d(120,40,(3,3),padding='same')
+# 		self.batchnorm4 = nn.BatchNorm2d(40)
+# 		self.conv5 = nn.Conv2d(40,120,(3,3),padding='same')
+# 		self.batchnorm5 = nn.BatchNorm2d(120)
+# 		self.pool2 = nn.MaxPool2d((4,4),stride=2)
+# 		# 5*5*40
+# 		self.conv6 = nn.Conv2d(120,40,(3,3),padding='same')
+# 		self.batchnorm6 = nn.BatchNorm2d(40)
+# 		self.conv7 = nn.Conv2d(40,120,(3,3),padding='same')
+# 		self.batchnorm7 = nn.BatchNorm2d(120)
+# 		self.dense1 = nn.Linear(120,512)
+# 		self.batchnorm8 = nn.BatchNorm1d(512)
+# 		self.dense2 = nn.Linear(512,26)
+# 		self.relu = nn.ReLU()
+
+# 	def forward(self, x):
+# 		x = self.feature_extract(x)
+# 		x1 = self.batchnorm1(self.relu(self.conv1(x)))
+# 		x = self.batchnorm2(self.relu(self.conv2(x1)))
+# 		x = self.relu(self.conv3(x))
+# 		x3 = self.batchnorm3(self.pool1(x+x1))
+# 		x = self.batchnorm4(self.relu(self.conv4(x3)))
+# 		x = self.relu(self.conv5(x))
+# 		x5 = self.batchnorm5(self.pool2(x+x3))
+# 		x = self.batchnorm6(self.relu(self.conv6(x5)))
+# 		x = self.batchnorm7(self.relu(self.conv7(x))+x5)
+# 		x = torch.flatten(x, start_dim=2, end_dim=3)
+# 		x = torch.mean(x, dim=2)
+# 		x = self.batchnorm8(self.relu(self.dense1(x)))
+# 		return self.dense2(x)
 
 # class module_3_5(nn.Module):
 # 	def __init__(self, input_dim, output_dim):
