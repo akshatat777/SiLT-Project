@@ -53,3 +53,5 @@ np.save('data/images', imgs)
 np.save('data/labels', labels)
 np.save('data/test_images', t_imgs)
 np.save('data/test_labels', t_labels)
+
+

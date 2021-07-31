@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import torch
 from sign_recog_cnn import SignRecogCNN
-from hand_cropper import crop_hand_cnn
+from hand_cropping import crop_hand_cnn
 from data_processing import normalize
 import time
 import mediapipe as mp
