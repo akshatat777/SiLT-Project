@@ -76,20 +76,19 @@ def to_polar(total_x):
     return np.concatenate([angles[...,None],radi[...,None],depth[...,None]],axis=-1)
 
 def normalize_rotation(total_x):
-    shift = total_x[:,8,0]-total_x[:,0,0]
+    shift = total_x[:,8,0]-0
     total_x[:,:,0]-=shift[...,None]
     return total_x
 
 def random_rotate(total_x):
-    angle = np.random.uniform(-1,1)*np.pi/6
+    angle = np.random.uniform(-1,1)*np.pi/4
     total_x[:,:,0]+=angle
     return total_x
 
 def random_scale(total_x):
-    rand_scale = np.random.uniform(0.3,3)
-    rand_scale2 = np.random.uniform(0.5,2)
+    rand_scale = np.random.uniform(0.2,5)
     total_x[:,:,1] *= rand_scale
-    total_x[:,:,2] *= rand_scale2
+    total_x[:,:,2] *= rand_scale
     return total_x
 
 def random_flip(total_x):
@@ -104,5 +103,6 @@ def data_augmentation(total_x):
     total_x = random_scale(total_x)
     total_x = random_flip(total_x)
     return random_rotate(total_x)
+    
 
 # print(normalize_joints(j))

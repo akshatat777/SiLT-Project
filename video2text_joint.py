@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import torch
-from sign_recogn_joint import SignRecogJoint
+from sign_recogn_joint import RecogJoint
 from hand_cropping import crop_hand_joint
 from data_processing import normalize_joints
 import time
@@ -10,8 +10,8 @@ from signtotext import sign_to_text
 from signtotext import filter_text
 
 def videototext():
-    model = SignRecogJoint()
-    model.load_state_dict(torch.load('sign_recogn_joint',map_location=torch.device('cpu')))
+    model = RecogJoint()
+    model.load_state_dict(torch.load('sign_recogn_joint_new',map_location=torch.device('cpu')))
     model.eval()
     st = time.time()
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
@@ -36,8 +36,8 @@ def videototext():
                     time.sleep(0.01)
                     return -1
                 # print(crops.shape)
-                results = normalize_joints(results)
-                preds = model(torch.flatten(torch.tensor(results).to('cpu'),start_dim=1)).detach().numpy()[0]
+                results = normalize_joints(results[0])
+                preds = model(torch.tensor(results).to('cpu')).detach().numpy()[0]
                 # N, 26
                 pred_scores.append(np.max(preds))
                 text = alphabet[np.argmax(preds)]
