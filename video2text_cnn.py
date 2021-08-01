@@ -6,10 +6,11 @@ from hand_cropping import crop_hand_cnn
 from data_processing import normalize
 import time
 import mediapipe as mp
-# from signtotext import sign_to_text
+from signtotext import sign_to_text
+from signtotext import filter_text
 
 model = SignRecogCNN()
-model.load_state_dict(torch.load('sign_recogn_cnn-4',map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('sign_recogn_cnn',map_location=torch.device('cpu')))
 model.eval()
 st = time.time()
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
@@ -29,7 +30,7 @@ with torch.no_grad():
             crops = crop_hand_cnn(img,hands,margin=0.05)
             if crops is None:
                 texts.append(' ')
-                pred_scores.append(0)
+                pred_scores.append(7)
                 time.sleep(0.01)
                 return -1
             crop = normalize(crops[0:1])
@@ -46,8 +47,10 @@ with torch.no_grad():
         if cv2.waitKey(1) & 0xFF == ord('q'):
             cv2.destroyAllWindows()
             break
-    print(texts)
     pred_scores = np.stack(pred_scores,axis=0)
-    print(pred_scores)
-    print(pred_scores.shape)
+    text = sign_to_text(texts, pred_scores)
+    filtered = filter_text(text)
+    print(text)
+    print(filtered)
+    
     # print(sign_to_text(texts, pred_scores))

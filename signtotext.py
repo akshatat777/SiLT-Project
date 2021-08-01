@@ -65,7 +65,8 @@ def filter_text(ls_str, threshold=3):
     for character in ls_str:
         if character != char:
             if count > threshold:
-                letters.append(char)
+                if not char == ' ': 
+                    letters.append(char)
                 char = character
                 count = 0
         count += 1

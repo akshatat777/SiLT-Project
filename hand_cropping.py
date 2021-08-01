@@ -2,8 +2,7 @@ import cv2
 import os
 import mediapipe as mp
 import numpy as np
-from data_processing import resize_crop
-from data_processing import resize
+from data_processing import resize_crop, resize_pad
 
 def crop_hand_data(image_folder, hand_num=1):
     mpHands = mp.solutions.hands
@@ -37,13 +36,13 @@ def crop_hand_joint(img, hands):
     del imgRGB, img
     return results[None,...].astype(np.float32)
 
-def crop_hand_cnn(img, hands, margin=0.2):
+def crop_hand_cnn(img, hands, margin=0.07):
     # plays recording from camera and processes each image
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = hands.process(imgRGB)
     cropped_results = []
     if not results.multi_hand_landmarks:
-    	return None
+        return None
     for handLms in results.multi_hand_landmarks:
         landmark_listx = []
         landmark_listy = []
@@ -54,14 +53,14 @@ def crop_hand_cnn(img, hands, margin=0.2):
             landmark_listx.append((lm.x*w))
             landmark_listy.append((lm.y*h))
         end = (int(max(landmark_listx))+int(margin*w), int(max(landmark_listy))+int(margin*h))
-        start = (int(min(landmark_listx))-int(margin*w), int(min(landmark_listy))-int(margin*h))
+        start = (max(0,int(min(landmark_listx))-int(margin*w)), max(0,int(min(landmark_listy))-int(margin*h)))
         cropped_img = img[start[1] : end[1], start[0] : end[0]]
         if cropped_img.shape[0] == 0 or cropped_img.shape[1] == 0:
-        	continue
-        print(cropped_img.shape)
-        cropped_results.append(resize(cropped_img))
+            continue
+        #print(cropped_img.shape)
+        cropped_results.append(resize_pad(cropped_img))
     if len(cropped_results) == 0:
-    	return None
+        return None
     return np.array(cropped_results,dtype = np.float32)
 
 #=======================================================================================================================================

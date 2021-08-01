@@ -9,17 +9,39 @@ def read_wiki():
 	wikipedia = re.sub(r'[^a-z ]+', '', wikipedia)
 	return wikipedia
 
-def gen_data():
-	wiki = read_wiki().split()
-	idx = np.arange(len(wiki))
+def vectorize(text):
+	vec = []
+	text = text.lower()
+	for let in text:
+		if let == ' ':
+			vec.append(26)
+		else:
+			vec.append(ord(let)-ord('a'))
+	vec.append(28)
+	vecs = []
+	for num in vec:
+		zero = np.zeros((29))
+		zero[num] = 1
+		vecs.append(zero)
+	return np.array(vecs)
+
+def gen_data(length, rep):
+	source = read_wiki()
+	idx = np.arange(len(source))
 	np.random.shuffle(idx)
 	for i in idx:
-		length = min(np.random.randint(1,5),len(wiki)-i)
-		text = ' '.join(wiki[i:i+length])
+		text = source[i:i+length]
 		t_text = []
 		for let in text:
-			rep = np.random.randint(5,40)
-			t_text.extend([let]*rep)
+			for i in range(rep):
+				if np.random.uniform(0,1)>0.8:
+					randnum = np.random.randint(0,27)
+					if randnum == 26:
+						t_text.append(' ')
+					else:
+						t_text.append(chr(randnum+ord('a')))
+				else:
+					t_text.append(let)
 		vecs = []
 
 		def let2num(let):
@@ -34,34 +56,27 @@ def gen_data():
 			vecs.append(letvec)
 		labels = [let2num(let) for let in text]
 		labels.append(28)
-		yield vecs, labels
+		yield np.array(vecs), np.array(labels)
 
-def gen_batch(batch_size = 32):
-	data_gen = gen_data()
+def gen_batch(batch_size = 128):
 	batch_vecs = []
 	batch_lets = []
-	max_len = 0
-	max_let_len = 0
 	end_let = np.zeros((29))
 	end_let[28] = 1.0
-	for i,(vecs,lets) in enumerate(data_gen):
-		#print(vecs[0].shape)
-		batch_vecs.append(vecs)
-		batch_lets.append(lets)
-		max_let_len = max(max_let_len, len(lets))
-		max_len = max(max_len,len(vecs))
-		if (i+1) % batch_size == 0:
-			max_len += 1
-			for j in range(len(batch_vecs)):
-				batch_vecs[j].append(end_let)
-				batch_vecs[j].extend([end_let]*(max_len - len(batch_vecs[j])))
-				batch_vecs[j] = np.array(batch_vecs[j])
-				#print(batch_vecs[j].shape)
-				batch_vecs[j] = batch_vecs[j][:,None,:]
-			batch_vecs = np.concatenate(batch_vecs,axis=1)
-			batch_lets = [lets + [28]*(max_let_len-len(lets)) for lets in batch_lets] 
-			yield batch_vecs, np.array(batch_lets,dtype=np.int8)
-			batch_vecs = []
-			batch_lets = []
-			max_let_len = 0
-			max_len = 0
+	while True:
+		length = np.random.randint(3,50)
+		rep = np.random.randint(5,40)
+		data_gen = gen_data(length,rep)
+		for i,(vecs,lets) in enumerate(data_gen):
+			#print(vecs[0].shape)
+			batch_vecs.append(vecs[:,None,:])
+			batch_lets.append(lets[:,None])
+			if i+1 == batch_size:
+				break
+		batch_vecs = np.concatenate(batch_vecs,axis=1)
+		batch_lets = np.concatenate(batch_lets,axis=1)
+		yield batch_vecs, batch_lets
+		batch_vecs = []
+		batch_lets = []
+		max_let_len = 0
+		max_len = 0
