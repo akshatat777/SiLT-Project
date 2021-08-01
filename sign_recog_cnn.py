@@ -4,37 +4,47 @@ from torchvision.models import mobilenet_v3_large
 
 
 class SignRecogCNN(nn.Module):
-  def __init__(self):
-    super(SignRecogCNN, self).__init__()
-    # 70*70*3
-    self.conv1 = nn.Conv2d(3,32,(7,7),stride=2,padding=2)
-    self.batchnorm1 = nn.BatchNorm2d(32)
-    # 34*34*64
-    self.conv2 = nn.Conv2d(32,32,(3,3),stride=2,padding=1)
-    self.batchnorm2 = nn.BatchNorm2d(32)
-    # 17*17*64
-    self.conv3 = nn.Conv2d(32,48,(4,4),stride=2)
-    self.batchnorm3 = nn.BatchNorm2d(48)
-    # 7*7*96
-    self.conv4 = nn.Conv2d(48,64,(3,3))    
-    self.batchnorm4 = nn.BatchNorm2d(64)
-    # 5*5*128
-    self.conv5 = nn.Conv2d(64,64,(1,1))    
-    self.batchnorm5 = nn.BatchNorm2d(64)
-    self.dense1 = nn.Linear(64,32)
-    self.batchnorm6 = nn.BatchNorm1d(32)
-    self.dense2 = nn.Linear(32,26)
-    self.relu = nn.ReLU()
+    def __init__(self):
+        super(SignRecogCNN, self).__init__()
+        mobilenet = mobilenet_v3_large(pretrained=True)
+        extract_layers = list(mobilenet.children())[0][:11]
+        self.feature_extract = nn.Sequential(*extract_layers)
+        for param in self.feature_extract.parameters():
+            param.requires_grad = False
+        # 14*14*80
+        self.dropout0 = nn.Dropout(0.0)
+        self.conv1 = nn.Conv2d(80,128,(3,3),padding='same')
+        self.batchnorm1 = nn.BatchNorm2d(128)
+        self.dropout1 = nn.Dropout(0.0)
+        self.conv2 = nn.Conv2d(128,128,(3,3),padding='same')
+        self.batchnorm2 = nn.BatchNorm2d(128)
+        self.dropout2 = nn.Dropout(0.0)
+        self.pool1 = nn.MaxPool2d((3,3),stride=2)
+        # 6*6*64
+        self.conv3 = nn.Conv2d(128,128,(3,3))
+        self.batchnorm3 = nn.BatchNorm2d(128)
+        self.dropout3 = nn.Dropout(0.0)
+        # 4*4*64
+        self.conv4 = nn.Conv2d(128,196,(2,2))
+        self.batchnorm4 = nn.BatchNorm2d(196)
+        self.dropout4 = nn.Dropout(0.0)
+        # 3*3*64
+        self.dense1 = nn.Linear(196,218)
+        self.batchnorm6 = nn.BatchNorm1d(218)
+        self.dropout5 = nn.Dropout(0.0)
+        self.dense2 = nn.Linear(218,26)
+        self.relu = nn.ReLU()
 
-  def forward(self, x):
-    x = self.batchnorm1(self.relu(self.conv1(x)))
-    x = self.batchnorm2(self.relu(self.conv2(x)))
-    x = self.batchnorm3(self.relu(self.conv3(x)))
-    x = self.batchnorm4(self.relu(self.conv4(x)))
-    x = self.batchnorm5(self.relu(self.conv5(x)))
-    x = torch.mean(torch.flatten(x, start_dim=2),dim=-1)
-    x = self.batchnorm6(self.relu(self.dense1(x)))
-    return self.dense2(x)
+    def forward(self, x):
+        x = self.dropout0(self.feature_extract(x))
+        x = self.dropout1(self.batchnorm1(self.relu(self.conv1(x))))
+        x = self.dropout2(self.batchnorm2(self.relu(self.conv2(x))))
+        x = self.pool1(x)
+        x = self.dropout3(self.batchnorm3(self.relu(self.conv3(x))))
+        x = self.dropout4(self.batchnorm4(self.relu(self.conv4(x))))
+        x = torch.max(torch.flatten(x, start_dim=2, end_dim=3),dim=2).values
+        x = self.dropout5(self.batchnorm6(self.relu(self.dense1(x))))
+        return self.dense2(x)
 
 
 

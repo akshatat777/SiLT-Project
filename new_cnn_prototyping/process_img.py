@@ -1,18 +1,25 @@
 import cv2
 import numpy as np
 import os
-from img_proc_help import resize_crop
+import mediapipe as mp
+from img_proc_help import resize_crop,crop_hand_cnn
 
 data = []
+hands = mp.solutions.hands.Hands(static_image_mode=True,
+								max_num_hands=1,
+								min_detection_confidence=0.5)
 for C in os.listdir('data'):
-	if 'DS' in C:
+	if 'DS' in C or '.npy' in C:
 		continue
 	for img_path in os.listdir(f'data/{C}'):
 		if 'DS' in img_path:
 			continue
-		img = resize_crop(cv2.imread(f'data/{C}/{img_path}'))
+		img = cv2.imread(f'data/{C}/{img_path}')
+		img = crop_hand_cnn(img,hands)
+		if img is None:
+			continue
 		label = ord(C)-ord('A')
-		data.append((img,label))
+		data.append((img[0],label))
 
 np.random.shuffle(data)
 
