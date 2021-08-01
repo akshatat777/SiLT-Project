@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import io
 from moviepy.editor import VideoFileClip, concatenate_videoclips
+import os
 #from audio_processing import load_mic
 
 def word_query(word):

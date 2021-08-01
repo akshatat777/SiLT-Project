@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
   <title>
-   American Sign Language ASL Video Dictionary - morning
+   American Sign Language ASL Video Dictionary - doing
   </title>
   <meta content="en-GB" http-equiv="content-language"/>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
@@ -35,7 +35,6 @@
         element.value = element.value.replace('(','');
         element.value = element.value.replace(')','');
         element.value = element.value.replace('?','');
-        element.value = element.value.replace(',','');
         element.value = element.value.replace('/','');
         element.value = element.value.replace('\\','');
         element.value = element.value.replace('_',' ');
@@ -44,27 +43,27 @@
     }
   </script>
   <meta content="article" property="og:type"/>
-  <meta content="Watch how to sign 'morning' in American Sign Language." name="description"/>
-  <meta content="Watch how to sign 'morning' in American Sign Language." property="og:description"/>
-  <meta content="Watch how to sign 'morning' in American Sign Language." itemprop="description"/>
+  <meta content="Watch how to sign 'doing' in American Sign Language." name="description"/>
+  <meta content="Watch how to sign 'doing' in American Sign Language." property="og:description"/>
+  <meta content="Watch how to sign 'doing' in American Sign Language." itemprop="description"/>
   <meta content="player" name="twitter:card"/>
-  <meta content="Watch how to sign 'morning' in American Sign Language." name="twitter:title"/>
-  <meta content="Watch how to sign 'morning' in American Sign Language." name="twitter:description"/>
-  <meta content="https://www.signasl.org/twitterplayer/morning" name="twitter:player"/>
-  <meta content="https://media.signbsl.com/videos/asl/startasl/mp4/morning.mp4" name="twitter:player:stream"/>
+  <meta content="Watch how to sign 'doing' in American Sign Language." name="twitter:title"/>
+  <meta content="Watch how to sign 'doing' in American Sign Language." name="twitter:description"/>
+  <meta content="https://www.signasl.org/twitterplayer/doing" name="twitter:player"/>
+  <meta content="https://media.signbsl.com/videos/asl/signlanguagestudent/mp4/doing.mp4" name="twitter:player:stream"/>
   <meta content="video/mp4" name="twitter:player:stream:content_type"/>
-  <meta content="https://media.signbsl.com/videos/asl/startasl/mp4/morning.mp4" property="og:video"/>
-  <meta content="640" name="twitter:player:width"/>
-  <meta content="360" name="twitter:player:height"/>
-  <meta content="https://media.signbsl.com/videos/asl/startasl/img/morning.jpg" name="twitter:image"/>
-  <meta content="640" name="twitter:image:width"/>
-  <meta content="360" name="twitter:image:height"/>
+  <meta content="https://media.signbsl.com/videos/asl/signlanguagestudent/mp4/doing.mp4" property="og:video"/>
+  <meta content="512" name="twitter:player:width"/>
+  <meta content="384" name="twitter:player:height"/>
+  <meta content="https://media.signbsl.com/videos/asl/signlanguagestudent/img/doing.jpg" name="twitter:image"/>
+  <meta content="512" name="twitter:image:width"/>
+  <meta content="384" name="twitter:image:height"/>
   <meta content="@LearnASL" name="twitter:site"/>
-  <meta content="https://media.signbsl.com/videos/asl/startasl/img/morning.jpg" property="og:image"/>
-  <meta content="360" property="og:image:height"/>
-  <meta content="640" property="og:image:width"/>
-  <meta content="360" property="og:video:height"/>
-  <meta content="640" property="og:video:width"/>
+  <meta content="https://media.signbsl.com/videos/asl/signlanguagestudent/img/doing.jpg" property="og:image"/>
+  <meta content="384" property="og:image:height"/>
+  <meta content="512" property="og:image:width"/>
+  <meta content="384" property="og:video:height"/>
+  <meta content="512" property="og:video:width"/>
   <meta content="video/mp4" property="og:video:type"/>
   <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
   <link href="//vjs.zencdn.net/4.2.2/video-js.css" rel="stylesheet"/>
@@ -176,7 +175,7 @@ height: 25%;}*/
       <div class="row">
        <div class="col-md-10 col-xs-8">
         <div class="form-group">
-         <input autocomplete="off" class="form-control typeahead" id="word" name="word" placeholder="Search word or phrase" type="text" value="morning"/>
+         <input autocomplete="off" class="form-control typeahead" id="word" name="word" placeholder="Search word or phrase" type="text" value="doing"/>
         </div>
        </div>
        <div class="col-md-2 col-xs-4">
@@ -223,33 +222,25 @@ height: 25%;}*/
    <div class="row featurette">
     <div class="col-md-12">
      <h1>
-      morning
+      doing
      </h1>
      <p>
-      <b>
-       How to sign:
-      </b>
-      the first light of day
-      <br/>
-      <i>
-       "we got up before dawn"; "they talked until morning";
-      </i>
      </p>
      <div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" style="float:left; width:330px; height:330px;">
-      <meta content="https://media.signbsl.com/videos/asl/startasl/img/morning.jpg" itemprop="thumbnailUrl"/>
+      <meta content="https://media.signbsl.com/videos/asl/signlanguagestudent/img/doing.jpg" itemprop="thumbnailUrl"/>
       <meta content="T4S" itemprop="duration"/>
-      <meta content="https://media.signbsl.com/videos/asl/startasl/mp4/morning.mp4" itemprop="contentURL"/>
+      <meta content="https://media.signbsl.com/videos/asl/signlanguagestudent/mp4/doing.mp4" itemprop="contentURL"/>
       <meta content="2015-09-01T08:00:00+00:00" itemprop="uploadDate"/>
       <span itemprop="name" style="display:none;">
-       morning in ASL
+       doing in ASL
       </span>
       <span itemprop="description" style="display:none;">
-       Watch how to sign morning in American Sign Language
+       Watch how to sign doing in American Sign Language
       </span>
-      <meta content="360" itemprop="height"/>
-      <meta content="640" itemprop="width"/>
-      <video class="video-js vjs-default-skin" controls="" data-setup="{}" height="240" id="video_con_signasl_1" poster="https://media.signbsl.com/videos/asl/startasl/img/morning.jpg" preload="none" rel="noreferrer" width="320">
-       <source src="https://media.signbsl.com/videos/asl/startasl/mp4/morning.mp4" type="video/mp4"/>
+      <meta content="384" itemprop="height"/>
+      <meta content="512" itemprop="width"/>
+      <video class="video-js vjs-default-skin" controls="" data-setup="{}" height="240" id="video_con_signasl_1" poster="https://media.signbsl.com/videos/asl/signlanguagestudent/img/doing.jpg" preload="none" rel="noreferrer" width="320">
+       <source src="https://media.signbsl.com/videos/asl/signlanguagestudent/mp4/doing.mp4" type="video/mp4"/>
        <p>
         Your browser does not support HTML5 video.
        </p>
@@ -257,198 +248,13 @@ height: 25%;}*/
       <br/>
       <div style="float:left">
        <i>
-        morning
+        doing
        </i>
        <span style="color:#666; font-size:80%;">
-        - StartASL
-        <a href="https://www.startasl.com" target="_blank">
-         More details
-        </a>
+        - SignLanguageStudent
        </span>
        <br/>
-       <a data-toggle="modal" data-videoref="7ry4ups7mu" href="#modalEmbedCode" title="Embed this video">
-        <span style="color:#666; font-size:80%; padding-bottom:10px;">
-         <span class="glyphicon glyphicon-link">
-         </span>
-         Embed this video
-        </span>
-       </a>
-      </div>
-     </div>
-     <div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" style="float:left; width:330px; height:330px;">
-      <meta content="https://media.signbsl.com/videos/asl/aslsignbank/img/SUNRISE-720.jpg" itemprop="thumbnailUrl"/>
-      <meta content="T4S" itemprop="duration"/>
-      <meta content="https://media.signbsl.com/videos/asl/aslsignbank/mp4/SUNRISE-720.mp4" itemprop="contentURL"/>
-      <meta content="2015-09-01T08:00:00+00:00" itemprop="uploadDate"/>
-      <span itemprop="name" style="display:none;">
-       dawn in ASL
-      </span>
-      <span itemprop="description" style="display:none;">
-       Watch how to sign dawn in American Sign Language
-      </span>
-      <meta content="370" itemprop="height"/>
-      <meta content="656" itemprop="width"/>
-      <video class="video-js vjs-default-skin" controls="" data-setup="{}" height="240" id="video_con_signasl_2" poster="https://media.signbsl.com/videos/asl/aslsignbank/img/SUNRISE-720.jpg" preload="none" rel="noreferrer" width="320">
-       <source src="https://media.signbsl.com/videos/asl/aslsignbank/mp4/SUNRISE-720.mp4" type="video/mp4"/>
-       <p>
-        Your browser does not support HTML5 video.
-       </p>
-      </video>
-      <br/>
-      <div style="float:left">
-       <i>
-        dawn
-       </i>
-       <span style="color:#666; font-size:80%;">
-        - ASL Signbank
-        <a href="https://aslsignbank.haskins.yale.edu/" rel="nofollow" target="_blank">
-         More details
-        </a>
-       </span>
-       <br/>
-       <a data-toggle="modal" data-videoref="1udft0d536" href="#modalEmbedCode" title="Embed this video">
-        <span style="color:#666; font-size:80%; padding-bottom:10px;">
-         <span class="glyphicon glyphicon-link">
-         </span>
-         Embed this video
-        </span>
-       </a>
-      </div>
-     </div>
-     <div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" style="float:left; width:330px; height:330px;">
-      <meta content="https://media.signbsl.com/videos/asl/aslbricks/img/morning.jpg" itemprop="thumbnailUrl"/>
-      <meta content="T4S" itemprop="duration"/>
-      <meta content="https://media.signbsl.com/videos/asl/aslbricks/mp4/morning.mp4" itemprop="contentURL"/>
-      <meta content="2015-09-01T08:00:00+00:00" itemprop="uploadDate"/>
-      <span itemprop="name" style="display:none;">
-       morning in ASL
-      </span>
-      <span itemprop="description" style="display:none;">
-       Watch how to sign morning in American Sign Language
-      </span>
-      <meta content="360" itemprop="height"/>
-      <meta content="640" itemprop="width"/>
-      <video class="video-js vjs-default-skin" controls="" data-setup="{}" height="240" id="video_con_signasl_3" poster="https://media.signbsl.com/videos/asl/aslbricks/img/morning.jpg" preload="none" rel="noreferrer" width="320">
-       <source src="https://media.signbsl.com/videos/asl/aslbricks/mp4/morning.mp4" type="video/mp4"/>
-       <p>
-        Your browser does not support HTML5 video.
-       </p>
-      </video>
-      <br/>
-      <div style="float:left">
-       <i>
-        morning
-       </i>
-       <span style="color:#666; font-size:80%;">
-        - ASL Bricks
-        <a href="https://www.aslbricks.org/" rel="nofollow" target="_blank">
-         More details
-        </a>
-       </span>
-       <br/>
-       <a data-toggle="modal" data-videoref="7dbejc0qvm" href="#modalEmbedCode" title="Embed this video">
-        <span style="color:#666; font-size:80%; padding-bottom:10px;">
-         <span class="glyphicon glyphicon-link">
-         </span>
-         Embed this video
-        </span>
-       </a>
-      </div>
-     </div>
-     <div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" style="float:left; width:330px; height:330px;">
-      <meta content="https://img.youtube.com/vi/Oem8EmGkQ0M/hqdefault.jpg" itemprop="thumbnailUrl"/>
-      <meta content="T4S" itemprop="duration"/>
-      <meta content="https://www.youtube.com/watch?v=Oem8EmGkQ0M" itemprop="URL"/>
-      <meta content="https://www.youtube.com/watch?v=Oem8EmGkQ0M" itemprop="embedURL"/>
-      <span itemprop="name" style="display:none;">
-       morning in ASL
-      </span>
-      <span itemprop="description" style="display:none;">
-       Watch how to sign morning in American Sign Language
-      </span>
-      <meta content="360" itemprop="height"/>
-      <meta content="640" itemprop="width"/>
-      <iframe allowfullscreen="" frameborder="0" height="180" src="//www.youtube-nocookie.com/embed/Oem8EmGkQ0M?rel=0&amp;modestbranding=1&amp;loop=1&amp;playlist=Oem8EmGkQ0M&amp;theme=light&amp;controls=0&amp;iv_load_policy=3&amp;mute=1&amp;origin=https://www.signasl.org" volume="0" width="320">
-      </iframe>
-      <br/>
-      <div style="float:left">
-       <i>
-        morning
-       </i>
-       <span style="color:#666; font-size:80%;">
-        - SignSchool
-        <a href="https://www.signschool.com" rel="nofollow" target="_blank">
-         More details
-        </a>
-       </span>
-       <br/>
-       <a data-toggle="modal" data-videoref="az6rj8lxnl" href="#modalEmbedCode" title="Embed this video">
-        <span style="color:#666; font-size:80%; padding-bottom:10px;">
-         <span class="glyphicon glyphicon-link">
-         </span>
-         Embed this video
-        </span>
-       </a>
-      </div>
-     </div>
-     <div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" style="float:left; width:330px; height:330px;">
-      <meta content="https://img.youtube.com/vi/e42RsW4bxdA/hqdefault.jpg" itemprop="thumbnailUrl"/>
-      <meta content="T4S" itemprop="duration"/>
-      <meta content="https://www.youtube.com/watch?v=e42RsW4bxdA" itemprop="URL"/>
-      <meta content="https://www.youtube.com/watch?v=e42RsW4bxdA" itemprop="embedURL"/>
-      <span itemprop="name" style="display:none;">
-       dawn in ASL
-      </span>
-      <span itemprop="description" style="display:none;">
-       Watch how to sign dawn in American Sign Language
-      </span>
-      <meta content="360" itemprop="height"/>
-      <meta content="640" itemprop="width"/>
-      <iframe allowfullscreen="" frameborder="0" height="180" src="//www.youtube-nocookie.com/embed/e42RsW4bxdA?rel=0&amp;modestbranding=1&amp;loop=1&amp;playlist=e42RsW4bxdA&amp;theme=light&amp;controls=0&amp;iv_load_policy=3&amp;mute=1&amp;origin=https://www.signasl.org" volume="0" width="320">
-      </iframe>
-      <br/>
-      <div style="float:left">
-       <i>
-        dawn
-       </i>
-       <span style="color:#666; font-size:80%;">
-        - SMARTSign Dictionary
-       </span>
-       <br/>
-       <a data-toggle="modal" data-videoref="jihudgbasq" href="#modalEmbedCode" title="Embed this video">
-        <span style="color:#666; font-size:80%; padding-bottom:10px;">
-         <span class="glyphicon glyphicon-link">
-         </span>
-         Embed this video
-        </span>
-       </a>
-      </div>
-     </div>
-     <div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" style="float:left; width:330px; height:330px;">
-      <meta content="https://img.youtube.com/vi/3jyZ6mkhPT8/hqdefault.jpg" itemprop="thumbnailUrl"/>
-      <meta content="T4S" itemprop="duration"/>
-      <meta content="https://www.youtube.com/watch?v=3jyZ6mkhPT8" itemprop="URL"/>
-      <meta content="https://www.youtube.com/watch?v=3jyZ6mkhPT8" itemprop="embedURL"/>
-      <span itemprop="name" style="display:none;">
-       aurora in ASL
-      </span>
-      <span itemprop="description" style="display:none;">
-       Watch how to sign aurora in American Sign Language
-      </span>
-      <meta content="360" itemprop="height"/>
-      <meta content="640" itemprop="width"/>
-      <iframe allowfullscreen="" frameborder="0" height="180" src="//www.youtube-nocookie.com/embed/3jyZ6mkhPT8?rel=0&amp;modestbranding=1&amp;loop=1&amp;playlist=3jyZ6mkhPT8&amp;theme=light&amp;controls=0&amp;iv_load_policy=3&amp;mute=1&amp;origin=https://www.signasl.org" volume="0" width="320">
-      </iframe>
-      <br/>
-      <div style="float:left">
-       <i>
-        aurora
-       </i>
-       <span style="color:#666; font-size:80%;">
-        - SMARTSign Dictionary
-       </span>
-       <br/>
-       <a data-toggle="modal" data-videoref="1mqoyojjoe" href="#modalEmbedCode" title="Embed this video">
+       <a data-toggle="modal" data-videoref="uesdt7elxd" href="#modalEmbedCode" title="Embed this video">
         <span style="color:#666; font-size:80%; padding-bottom:10px;">
          <span class="glyphicon glyphicon-link">
          </span>
@@ -462,272 +268,6 @@ height: 25%;}*/
      </div>
      <p>
       <!-- -->
-     </p>
-     <p>
-      <i>
-       Similiar / Same:
-      </i>
-      <a href="/sign/dawn">
-       dawn
-      </a>
-      ,
-      <a href="/sign/sunup">
-       sunup
-      </a>
-      ,
-      <a href="/sign/sunrise">
-       sunrise
-      </a>
-      ,
-      <a href="/sign/dayspring">
-       dayspring
-      </a>
-      ,
-      <a href="/sign/break-of-the-day">
-       break of the day
-      </a>
-      ,
-      <a href="/sign/break-of-day">
-       break of day
-      </a>
-      ,
-      <a href="/sign/daybreak">
-       daybreak
-      </a>
-      ,
-      <a href="/sign/first-light">
-       first light
-      </a>
-      ,
-      <a href="/sign/aurora">
-       aurora
-      </a>
-      ,
-      <a href="/sign/dawning">
-       dawning
-      </a>
-      ,
-      <a href="/sign/cockcrow">
-       cockcrow
-      </a>
-     </p>
-     <p>
-      <i>
-       Categories:
-      </i>
-      <a href="/sign/hour">
-       hour
-      </a>
-      ,
-      <a href="/sign/time-of-day">
-       time of day
-      </a>
-     </p>
-     <h2>
-      morning
-     </h2>
-     <p>
-      <b>
-       How to sign:
-      </b>
-      a conventional expression of greeting or farewell
-      <br/>
-     </p>
-     <div style="float:left; width: 680px;">
-      <div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" style="float:left; width:330px; height:330px;">
-       <meta content="https://media.signbsl.com/videos/asl/startasl/img/goodmorning.jpg" itemprop="thumbnailUrl"/>
-       <meta content="T4S" itemprop="duration"/>
-       <meta content="https://media.signbsl.com/videos/asl/startasl/mp4/goodmorning.mp4" itemprop="contentURL"/>
-       <meta content="2015-09-01T08:00:00+00:00" itemprop="uploadDate"/>
-       <span itemprop="name" style="display:none;">
-        good morning in ASL
-       </span>
-       <span itemprop="description" style="display:none;">
-        Watch how to sign good morning in American Sign Language
-       </span>
-       <meta content="360" itemprop="height"/>
-       <meta content="640" itemprop="width"/>
-       <video class="video-js vjs-default-skin" controls="" data-setup="{}" height="240" id="video_con_signasl_7" poster="https://media.signbsl.com/videos/asl/startasl/img/goodmorning.jpg" preload="none" rel="noreferrer" width="320">
-        <source src="https://media.signbsl.com/videos/asl/startasl/mp4/goodmorning.mp4" type="video/mp4"/>
-        <p>
-         Your browser does not support HTML5 video.
-        </p>
-       </video>
-       <br/>
-       <div style="float:left">
-        <i>
-         good morning
-        </i>
-        <span style="color:#666; font-size:80%;">
-         - StartASL
-         <a href="https://www.startasl.com" target="_blank">
-          More details
-         </a>
-        </span>
-        <br/>
-        <a data-toggle="modal" data-videoref="qrguozibml" href="#modalEmbedCode" title="Embed this video">
-         <span style="color:#666; font-size:80%; padding-bottom:10px;">
-          <span class="glyphicon glyphicon-link">
-          </span>
-          Embed this video
-         </span>
-        </a>
-       </div>
-      </div>
-      <div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" style="float:left; width:330px; height:330px;">
-       <meta content="https://media.signbsl.com/videos/asl/startasl/img/good-morning.jpg" itemprop="thumbnailUrl"/>
-       <meta content="T4S" itemprop="duration"/>
-       <meta content="https://media.signbsl.com/videos/asl/startasl/mp4/good-morning.mp4" itemprop="contentURL"/>
-       <meta content="2015-09-01T08:00:00+00:00" itemprop="uploadDate"/>
-       <span itemprop="name" style="display:none;">
-        good morning in ASL
-       </span>
-       <span itemprop="description" style="display:none;">
-        Watch how to sign good morning in American Sign Language
-       </span>
-       <meta content="360" itemprop="height"/>
-       <meta content="640" itemprop="width"/>
-       <video class="video-js vjs-default-skin" controls="" data-setup="{}" height="240" id="video_con_signasl_8" poster="https://media.signbsl.com/videos/asl/startasl/img/good-morning.jpg" preload="none" rel="noreferrer" width="320">
-        <source src="https://media.signbsl.com/videos/asl/startasl/mp4/good-morning.mp4" type="video/mp4"/>
-        <p>
-         Your browser does not support HTML5 video.
-        </p>
-       </video>
-       <br/>
-       <div style="float:left">
-        <i>
-         good morning
-        </i>
-        <span style="color:#666; font-size:80%;">
-         - StartASL
-         <a href="https://www.startasl.com" target="_blank">
-          More details
-         </a>
-        </span>
-        <br/>
-        <a data-toggle="modal" data-videoref="puw8ltxy3e" href="#modalEmbedCode" title="Embed this video">
-         <span style="color:#666; font-size:80%; padding-bottom:10px;">
-          <span class="glyphicon glyphicon-link">
-          </span>
-          Embed this video
-         </span>
-        </a>
-       </div>
-      </div>
-      <div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" style="float:left; width:330px; height:330px;">
-       <meta content="https://img.youtube.com/vi/_LsXpXHgZBc/hqdefault.jpg" itemprop="thumbnailUrl"/>
-       <meta content="T4S" itemprop="duration"/>
-       <meta content="https://www.youtube.com/watch?v=_LsXpXHgZBc" itemprop="URL"/>
-       <meta content="https://www.youtube.com/watch?v=_LsXpXHgZBc" itemprop="embedURL"/>
-       <span itemprop="name" style="display:none;">
-        good morning in ASL
-       </span>
-       <span itemprop="description" style="display:none;">
-        Watch how to sign good morning in American Sign Language
-       </span>
-       <meta content="360" itemprop="height"/>
-       <meta content="640" itemprop="width"/>
-       <iframe allowfullscreen="" frameborder="0" height="180" src="//www.youtube-nocookie.com/embed/_LsXpXHgZBc?rel=0&amp;modestbranding=1&amp;loop=1&amp;playlist=_LsXpXHgZBc&amp;theme=light&amp;controls=0&amp;iv_load_policy=3&amp;mute=1&amp;origin=https://www.signasl.org" volume="0" width="320">
-       </iframe>
-       <br/>
-       <div style="float:left">
-        <i>
-         good morning
-        </i>
-        <span style="color:#666; font-size:80%;">
-         - VL2 Parent Toolkit
-         <a href="https://vl2.educ.ualberta.ca" rel="nofollow" target="_blank">
-          More details
-         </a>
-        </span>
-        <br/>
-        <a data-toggle="modal" data-videoref="pwi0ppcomk" href="#modalEmbedCode" title="Embed this video">
-         <span style="color:#666; font-size:80%; padding-bottom:10px;">
-          <span class="glyphicon glyphicon-link">
-          </span>
-          Embed this video
-         </span>
-        </a>
-       </div>
-      </div>
-      <div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" style="float:left; width:330px; height:330px;">
-       <meta content="https://img.youtube.com/vi/YfZNZlekeo4/hqdefault.jpg" itemprop="thumbnailUrl"/>
-       <meta content="T4S" itemprop="duration"/>
-       <meta content="https://www.youtube.com/watch?v=YfZNZlekeo4" itemprop="URL"/>
-       <meta content="https://www.youtube.com/watch?v=YfZNZlekeo4" itemprop="embedURL"/>
-       <span itemprop="name" style="display:none;">
-        good morning in ASL
-       </span>
-       <span itemprop="description" style="display:none;">
-        Watch how to sign good morning in American Sign Language
-       </span>
-       <meta content="360" itemprop="height"/>
-       <meta content="640" itemprop="width"/>
-       <iframe allowfullscreen="" frameborder="0" height="180" src="//www.youtube-nocookie.com/embed/YfZNZlekeo4?rel=0&amp;modestbranding=1&amp;loop=1&amp;playlist=YfZNZlekeo4&amp;theme=light&amp;controls=0&amp;iv_load_policy=3&amp;mute=1&amp;origin=https://www.signasl.org" volume="0" width="320">
-       </iframe>
-       <br/>
-       <div style="float:left">
-        <i>
-         good morning
-        </i>
-        <span style="color:#666; font-size:80%;">
-         - VL2 Parent Toolkit
-         <a href="https://vl2.educ.ualberta.ca" rel="nofollow" target="_blank">
-          More details
-         </a>
-        </span>
-        <br/>
-        <a data-toggle="modal" data-videoref="scquvkzi4r" href="#modalEmbedCode" title="Embed this video">
-         <span style="color:#666; font-size:80%; padding-bottom:10px;">
-          <span class="glyphicon glyphicon-link">
-          </span>
-          Embed this video
-         </span>
-        </a>
-       </div>
-      </div>
-     </div>
-     <div style="width: 300px; float:left;">
-      <!-- SignSecondColLarge -->
-      <ins class="adsbygoogle" data-ad-client="ca-pub-0826065450533327" data-ad-slot="6121045601" style="display:inline-block;width:300px;height:600px">
-      </ins>
-      <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-     </div>
-     <div style="clear:both">
-      <!-- -->
-     </div>
-     <p>
-      <!-- -->
-     </p>
-     <p>
-      <i>
-       Similiar / Same:
-      </i>
-      <a href="/sign/good-morning">
-       good morning
-      </a>
-     </p>
-     <p>
-      <i>
-       Categories:
-      </i>
-      <a href="/sign/farewell">
-       farewell
-      </a>
-      ,
-      <a href="/sign/greeting">
-       greeting
-      </a>
-      ,
-      <a href="/sign/salutation">
-       salutation
-      </a>
-      ,
-      <a href="/sign/word-of-farewell">
-       word of farewell
-      </a>
      </p>
     </div>
    </div>
@@ -742,7 +282,7 @@ height: 25%;}*/
       <p>
        Upload your sign now.
       </p>
-      <a class="btn btn-success btn-lg" href="/upload/morning" rel="nofollow" role="button">
+      <a class="btn btn-success btn-lg" href="/upload/doing" rel="nofollow" role="button">
        <span class="glyphicon glyphicon-upload">
        </span>
        Upload
@@ -758,11 +298,11 @@ height: 25%;}*/
    <div id="share-buttons">
     Share »
     <!-- Facebook -->
-    <a href="https://www.facebook.com/sharer.php?u=https://www.signasl.org/sign/morning" rel="nofollow" target="_blank" title="Facebook">
+    <a href="https://www.facebook.com/sharer.php?u=https://www.signasl.org/sign/doing" rel="nofollow" target="_blank" title="Facebook">
      <img alt="Facebook" src="/img/socialmedia/facebook.png"/>
     </a>
     <!-- Twitter -->
-    <a href="https://twitter.com/share?url=https://www.signasl.org/sign/morning&amp;text=Watch how to sign 'morning' in American Sign Language&amp;hashtags=asl,signasl" rel="nofollow" target="_blank" title="Twitter">
+    <a href="https://twitter.com/share?url=https://www.signasl.org/sign/doing&amp;text=Watch how to sign 'doing' in American Sign Language&amp;hashtags=asl,signasl" rel="nofollow" target="_blank" title="Twitter">
      <img alt="Twitter" src="/img/socialmedia/twitter.png"/>
     </a>
     <!-- Pinterest -->
@@ -770,7 +310,7 @@ height: 25%;}*/
      <img alt="Pinterest" src="/img/socialmedia/pinterest.png"/>
     </a>
     <!-- Email -->
-    <a href="/cdn-cgi/l/email-protection#d5ea86a0b7bfb0b6a1e89dbaa2f5a1baf5a6b4acf5b8baa7bbbcbbb2f5bcbbf594b8b0a7bcb6b4bbf586bcb2bbf599b4bbb2a0b4b2b0f397bab1ace89cf0e7e5a6b4a2f0e7e5a1bdbca6f0e7e5b4bbb1f0e7e5a1bdbaa0b2bda1f0e7e5bab3f0e7e5acbaa0f4f0e7e5f5bda1a1a5a6effafaa2a2a2fba6bcb2bbb4a6b9fbbaa7b2faa6bcb2bbfab8baa7bbbcbbb2" rel="nofollow" title="Email">
+    <a href="/cdn-cgi/l/email-protection#58670b2d3a323d3b2c6510372f782c37782b3921783c3731363f7831367819353d2a313b3936780b313f36781439363f2d393f3d7e1a373c2165117d6a682b392f7d6a682c30312b7d6a6839363c7d6a682c30372d3f302c7d6a68373e7d6a6821372d797d6a6878302c2c282b6277772f2f2f762b313f36392b3476372a3f772b313f36773c3731363f" rel="nofollow" title="Email">
      <img alt="Email" src="/img/socialmedia/email.png"/>
     </a>
    </div>
@@ -892,7 +432,7 @@ $('.typeahead').typeahead({ highlight: true }, {
   </div>
   <script>
    $('#modalEmbedCode').on('show.bs.modal', function(e) {
-				var embedHtml = '<blockquote class="signasldata-embed" data-vidref="' + $(e.relatedTarget).data('videoref') + '"><a href="https://www.signasl.org/sign/morning">Watch how to sign \'morning\' in American Sign Language</a></blockquote>';
+				var embedHtml = '<blockquote class="signasldata-embed" data-vidref="' + $(e.relatedTarget).data('videoref') + '"><a href="https://www.signasl.org/sign/doing">Watch how to sign \'doing\' in American Sign Language</a></blockquote>';
 				var embedHtmlScript = '<script async src="https://embed.signasl.org/widgets.js" charset="utf-8"><' + '/script>';
 				$("#embedCodeTextBox").val(embedHtml + embedHtmlScript);
 
